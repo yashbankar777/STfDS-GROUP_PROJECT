@@ -1,0 +1,10 @@
+# Operating system level
+**/[Tt]humbs.db
+**/.DS_Store
+
+# Python
+venv/
+**/__pycache__
+
+# Project files
+**/data/
