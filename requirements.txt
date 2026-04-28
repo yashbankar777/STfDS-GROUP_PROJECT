@@ -3,3 +3,5 @@ scikit-learn
 numpy
 altair
 holidays
+catboost
+xgboost
