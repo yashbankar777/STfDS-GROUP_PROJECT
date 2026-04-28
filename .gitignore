@@ -9,3 +9,5 @@ venv/
 # Project files
 # **/data/
 **/data/cache
+
+**/catboost_info/
