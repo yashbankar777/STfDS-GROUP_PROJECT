@@ -8,3 +8,4 @@ venv/
 
 # Project files
 # **/data/
+**/data/cache
