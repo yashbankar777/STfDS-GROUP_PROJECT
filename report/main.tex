@@ -120,7 +120,7 @@
 \renewcommand{\appendixpagename}{\color{SectionBGColor}Appendices}
 \pagestyle{fancy}
 \lhead{36103: Statistical Thinking for Data Science}
-\rhead{Assignment 2: Modelling Report}
+\rhead{Assignment 2: Data Analysis Report}
 
 \setlength{\bibitemsep}{3pt}
 
@@ -179,10 +179,12 @@
 
 \AddToShipoutPicture*{\includegraphics[width=\paperwidth]{img/The-Purpose-of-Public-Pol-002.jpg}}
 
+% Logo
 \node[anchor=north west, xshift=1cm, yshift=-1.5cm] at (current page.north west) {
-    \includegraphics[width=4.5cm]{img/uts_logo_white.png}
+    \includegraphics[width=4.2cm]{img/uts_logo_white.png}
 };
 
+% Main Title
 \node[
     anchor=north west,
     align=left,
@@ -191,42 +193,50 @@
     yshift=-2.3cm
 ] at (current page.north west) {
     \color{white}
-    {\fontsize{32}{42}\selectfont\bfseries Assignment 2: Modelling Report}
+    {\fontsize{24}{28}\selectfont\bfseries Assignment 2: \\ Data Analysis Report}
 };
 
+% Subject Line
 \node[
     anchor=north west,
     align=left,
     text width=0.6\paperwidth,
     xshift=6cm,
-    yshift=-4.7cm
+    yshift=-4.5cm
 ] at (current page.north west) {
     \color{white}
-    {\fontsize{18}{22}\selectfont 36103: Statistical Thinking for Data Science}
+    {\fontsize{12}{14}\selectfont 36103: Statistical Thinking for Data Science}
 };
 
+% Semi-transparent box - Now anchored to the BOTTOM
 \node[
-    anchor=north west,
+    anchor=south west,    % Anchors to the bottom-left
     align=left,
-    text width=0.6\paperwidth,
-    xshift=1.8cm,
-    yshift=-8.8cm
-] at (current page.north west) {
-    \color{white}
-    {\fontsize{14}{18}\selectfont
+    fill=white,
+    fill opacity=0.9,
+    text opacity=1,
+    inner sep=15pt,
+    rounded corners=2pt,
+    xshift=1.2cm,           % Stays aligned horizontally with the title
+    yshift=1.5cm          % Distance UP from the bottom edge
+] at (current page.south west) {
+    \color{black}
+    {\fontsize{12}{16}\selectfont \textbf{Group Number:} 5} \\[0.2cm]
+    {\fontsize{11}{16}\selectfont
     \begin{tabular}{@{}l l@{}}
-    Yash Bankar & (25717428) \\
-    Preran Apinakoppa & (26583524) \\
-    Bhavya Subhash Chandar & (25599679) \\
-    Rohit Khanna & (25669108) \\
-    Murphy Fang & (26211831)
+    \textbf{Yash Bankar} & (25717428) \\
+    \textbf{Preran Apinakoppa} & (26583524) \\
+    \textbf{Bhavya Subhash Chandar} & (25599679) \\
+    \textbf{Rohit Khanna} & (25669108) \\
+    \textbf{Murphy Fang} & (26211831)
     \end{tabular}
     }
 };
 
 \end{tikzpicture}
-
 \end{titlepage}
+
+
 \pagenumbering{roman}
 
 \vspace*{3cm}
@@ -254,6 +264,7 @@
 \sectionpage{Conclusion}
 
 \clearpage
-\printbibliography[heading=bibintoc, title={Bibliography}]
+\sectionpage{References}
+\printbibliography[heading=none]
 \clearpage
 \end{document}

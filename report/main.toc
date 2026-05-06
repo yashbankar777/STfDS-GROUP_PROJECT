@@ -3,4 +3,5 @@
 \contentsline {section}{\numberline {2}Methodology}{3}{section*.2}%
 \contentsline {section}{\numberline {3}Results}{5}{section*.3}%
 \contentsline {section}{\numberline {4}Conclusion}{7}{section*.4}%
+\contentsline {section}{\numberline {5}References}{9}{section*.5}%
 \contentsfinish 
