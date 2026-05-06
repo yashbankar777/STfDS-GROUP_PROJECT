@@ -1,0 +1,259 @@
+% !TeX TXS-program:compile = txs:///xelatex/[--shell-escape]
+\documentclass[10pt, a4paper, nofootinbib]{article}
+
+% \usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+
+\usepackage{fontspec}
+\usepackage{textcomp, gensymb}
+\usepackage[english]{babel}
+\usepackage{alphabeta}
+\usepackage{microtype}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{colortbl}
+\usepackage[top=12mm, bottom=10mm, left=8mm, right=8mm, headsep=2mm, footskip=4mm]{geometry}
+\usepackage{array}
+\usepackage[export]{adjustbox}
+\usepackage{datetime}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{relsize}
+\usepackage{circuitikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{cuted}
+\usepackage{titletoc}
+\usepackage[showboxes, absolute]{textpos}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage[thinlines]{easytable}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage[official]{eurosym}
+\usepackage{enumitem}
+\usepackage[style=apa, backend=biber, hyperref=true, natbib=true]{biblatex}
+\usepackage{nameref}
+\usepackage[
+  hidelinks,
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=black,
+  filecolor=black,
+  citecolor=blue,
+  linktoc=all
+]{hyperref}
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
+\usepackage{ragged2e}
+\usepackage{listings}
+\usepackage[bottom]{footmisc}
+\usepackage{paracol}
+\usepackage{stfloats}
+\usepackage{xurl}
+\usepackage{eso-pic}
+\usepackage{titlesec}
+\usepackage[toc,page]{appendix}
+\usepackage{fancyhdr}
+\usepackage{changepage}
+
+\setmainfont{Inter}[
+    Path = ./font/,
+    UprightFont = {Inter_28pt-Regular.ttf},
+    BoldFont = {Inter_28pt-Bold.ttf},
+    ItalicFont = {Inter_28pt-Italic.ttf},
+    BoldItalicFont = {Inter_28pt-BoldItalic.ttf}
+]
+
+\linespread{1.15}
+\setlength{\parskip}{8pt plus 2pt minus 2pt}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\widowpenalty=10000
+\clubpenalty=10000
+
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  labelsep=period,
+  justification=centering,
+  singlelinecheck=false,
+}
+
+\captionsetup[sub]{font=small, labelfont=bf} 
+
+\setlist{
+    topsep=0pt,
+    partopsep=0pt,
+    parsep=0pt,
+    itemsep=6pt
+}
+\addbibresource{refs.bib}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\sloppy
+
+\definecolor{SectionBGColor}{HTML}{0066ff}
+
+
+\titleformat{\section}{\normalfont\Large\bfseries\color{SectionBGColor}}{\thesection}{1em}{}
+\titleformat{\subsection}{\RaggedRight\normalfont\large\bfseries\color{SectionBGColor}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{SectionBGColor}}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\color{SectionBGColor}}{\theparagraph}{1em}{}
+
+\titlespacing*{\section}{0pt}{6pt}{2pt}
+\titlespacing*{\subsection}{0pt}{6pt}{-3pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{-3pt}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\renewcommand{\footnotesize}{\fontsize{11pt}{13pt}\selectfont}
+
+\addto\captionsenglish{%
+  \renewcommand{\contentsname}{Table of Contents}%
+}
+
+\renewcommand{\appendixpagename}{\color{SectionBGColor}Appendices}
+\pagestyle{fancy}
+\lhead{36103: Statistical Thinking for Data Science}
+\rhead{Assignment 2: Modelling Report}
+
+\setlength{\bibitemsep}{3pt}
+
+\DeclareCiteCommand{\parencite}[\mkbibparens]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\let\cite\parencite
+
+\makeatletter
+\AtEveryCitekey{\ifnameundef{shortauthor}{}{\let\cbx@apa@ifnamesaved\@firstoftwo}}
+\makeatother
+
+
+\newcommand{\sectionpage}[1]{
+  \clearpage
+  \thispagestyle{empty}
+  \refstepcounter{section}
+  \phantomsection
+  \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[SectionBGColor] (current page.south west) rectangle (current page.north east);
+    \node[anchor=north east, xshift=-1cm, yshift=-1cm] at (current page.north east) {
+        \includegraphics[width=4cm]{img/uts_logo_white.png}
+    };
+    \node[
+        anchor=center, 
+        align=left,
+        text width=0.8\paperwidth,
+        yshift=8cm,
+        xshift=0cm
+    ] at (current page.center) {
+        \color{white}\fontsize{32}{48}\selectfont\bfseries #1
+    };
+  \end{tikzpicture}
+  \clearpage
+  \section*{\thesection\quad #1}
+}
+
+
+\begin{document}
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay]
+
+\AddToShipoutPicture*{\includegraphics[width=\paperwidth]{img/The-Purpose-of-Public-Pol-002.jpg}}
+
+\node[anchor=north west, xshift=1cm, yshift=-1.5cm] at (current page.north west) {
+    \includegraphics[width=4.5cm]{img/uts_logo_white.png}
+};
+
+\node[
+    anchor=north west,
+    align=left,
+    text width=0.6\paperwidth,
+    xshift=6cm,
+    yshift=-2.3cm
+] at (current page.north west) {
+    \color{white}
+    {\fontsize{32}{42}\selectfont\bfseries Assignment 2: Modelling Report}
+};
+
+\node[
+    anchor=north west,
+    align=left,
+    text width=0.6\paperwidth,
+    xshift=6cm,
+    yshift=-4.7cm
+] at (current page.north west) {
+    \color{white}
+    {\fontsize{18}{22}\selectfont 36103: Statistical Thinking for Data Science}
+};
+
+\node[
+    anchor=north west,
+    align=left,
+    text width=0.6\paperwidth,
+    xshift=1.8cm,
+    yshift=-8.8cm
+] at (current page.north west) {
+    \color{white}
+    {\fontsize{14}{18}\selectfont
+    \begin{tabular}{@{}l l@{}}
+    Yash Bankar & (25717428) \\
+    Preran Apinakoppa & (26583524) \\
+    Bhavya Subhash Chandar & (25599679) \\
+    Rohit Khanna & (25669108) \\
+    Murphy Fang & (26211831)
+    \end{tabular}
+    }
+};
+
+\end{tikzpicture}
+
+\end{titlepage}
+\pagenumbering{roman}
+
+\vspace*{3cm}
+
+{\begin{adjustwidth}{1.2cm}{1.2cm}
+\setlength{\parindent}{0pt}
+\section*{\LARGE Executive Summary}
+\vspace*{1cm}
+
+\end{adjustwidth}}
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+\listoffigures
+\clearpage
+
+\pagenumbering{arabic}
+
+\sectionpage{Introduction}
+\sectionpage{Methodology}
+\sectionpage{Results}
+\sectionpage{Conclusion}
+
+\clearpage
+\printbibliography[heading=bibintoc, title={Bibliography}]
+\clearpage
+\end{document}
