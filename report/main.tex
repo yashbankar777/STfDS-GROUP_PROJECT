@@ -58,7 +58,6 @@
 \usepackage{fancyhdr}
 \usepackage{changepage}
 
-% --- FONT SETTINGS ---
 \setmainfont{Inter}[
     Path = ./font/,
     UprightFont = {Inter_28pt-Regular.ttf},
@@ -67,7 +66,6 @@
     BoldItalicFont = {Inter_28pt-BoldItalic.ttf}
 ]
 
-% --- GLOBAL SETTINGS ---
 \linespread{1.15}
 \setlength{\parskip}{8pt plus 2pt minus 2pt}
 \setcounter{tocdepth}{4}
@@ -77,41 +75,34 @@
 
 \definecolor{SectionBGColor}{HTML}{0066ff}
 
-% --- NEW LEVEL DEFINITION: subsubsubsection ---
 \titleclass{\subsubsubsection}{straight}[\subsubsection]
 \newcounter{subsubsubsection}[subsubsection]
 \renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
 
-% --- HEADING FORMATTING (Main Text) ---
 \titleformat{\section}{\normalfont\Large\bfseries\color{SectionBGColor}}{\thesection}{1em}{}
 \titleformat{\subsection}{\RaggedRight\normalfont\large\bfseries\color{SectionBGColor}}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{SectionBGColor}}{\thesubsubsection}{1em}{}
 \titleformat{\subsubsubsection}{\normalfont\normalsize\bfseries\color{SectionBGColor}}{\thesubsubsubsection}{1em}{}
 \titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\color{SectionBGColor}}{\theparagraph}{1em}{}
 
-% --- HEADING SPACING ---
 \titlespacing*{\section}{0pt}{6pt}{2pt}
 \titlespacing*{\subsection}{0pt}{6pt}{-3pt}
 \titlespacing*{\subsubsection}{0pt}{6pt}{-3pt}
 \titlespacing*{\subsubsubsection}{0pt}{6pt}{-3pt}
 
-% --- TABLE OF CONTENTS FORMATTING ---
 \contentsmargin{2.55em}
 
-% Indent subsubsubsections and fix overlapping numbers
 \titlecontents{subsubsubsection}
-  [7.5em]                                 % Horizontal indentation
-  {\smallskip}                            % Vertical space
-  {\contentslabel{3.8em}}                 % Width of number box (2.1.2.1)
-  {}                                      % Text if no number
-  {\titlerule*[0.8pc]{.}\contentspage}    % Dotted line and page number
+  [10em]
+  {\smallskip}
+  {\contentslabel{3.8em}}
+  {}
+  {\titlerule*[0.8pc]{.}\contentspage}
 
-% Fix for PDF bookmarks/sidebar
 \makeatletter
 \def\toclevel@subsubsubsection{4}
 \makeatother
 
-% --- REMAINING MACROS ---
 \captionsetup{font=small, labelfont=bf, labelsep=period, justification=centering, singlelinecheck=false}
 \captionsetup[sub]{font=small, labelfont=bf} 
 
@@ -142,7 +133,6 @@
   \clearpage
   \section*{\thesection\quad #1}
 }
-
 
 
 \begin{document}
