@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.4.17)  6 MAY 2026 11:17
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.4.17)  6 MAY 2026 11:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2190,9 +2190,9 @@ Package microtype Info: Character `"AD' is missing
 * \textheight=782.4508pt
 * \oddsidemargin=-49.5078pt
 * \evensidemargin=-49.5078pt
-* \topmargin=-55.81723pt
+* \topmargin=-61.50778pt
 * \headheight=12.0pt
-* \headsep=5.69054pt
+* \headsep=11.38109pt
 * \topskip=10.0pt
 * \footskip=11.38109pt
 * \marginparwidth=57.0pt
@@ -2442,7 +2442,7 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  72890 strings out of 402807
  1768303 string characters out of 5444514
- 3193420 words of memory out of 5000000
+ 3193423 words of memory out of 5000000
  100987 multiletter control sequences out of 15000+600000
  631788 words of font info for 76 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
