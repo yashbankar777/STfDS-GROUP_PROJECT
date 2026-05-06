@@ -1,8 +1,5 @@
 % !TeX TXS-program:compile = txs:///xelatex/[--shell-escape]
-\documentclass[10pt, a4paper, nofootinbib]{article}
-
-% \usepackage[utf8]{inputenc}
-% \usepackage[T1]{fontenc}
+\documentclass[11pt, a4paper, nofootinbib]{article}
 
 \usepackage{fontspec}
 \usepackage{textcomp, gensymb}
@@ -11,7 +8,7 @@
 \usepackage{microtype}
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{colortbl}
-\usepackage[top=12mm, bottom=10mm, left=8mm, right=8mm, headsep=4mm, footskip=4mm]{geometry}
+\usepackage[top=12mm, bottom=10mm, left=12mm, right=12mm, headsep=4mm, footskip=4mm]{geometry}
 \usepackage{array}
 \usepackage[export]{adjustbox}
 \usepackage{datetime}
@@ -35,7 +32,6 @@
 \usepackage{tabularx}
 \usepackage[thinlines]{easytable}
 \usepackage{amsmath}
-\usepackage{gensymb}
 \usepackage[official]{eurosym}
 \usepackage{enumitem}
 \usepackage[style=apa, backend=biber, hyperref=true, natbib=true]{biblatex}
@@ -62,6 +58,7 @@
 \usepackage{fancyhdr}
 \usepackage{changepage}
 
+% --- FONT SETTINGS ---
 \setmainfont{Inter}[
     Path = ./font/,
     UprightFont = {Inter_28pt-Regular.ttf},
@@ -70,6 +67,7 @@
     BoldItalicFont = {Inter_28pt-BoldItalic.ttf}
 ]
 
+% --- GLOBAL SETTINGS ---
 \linespread{1.15}
 \setlength{\parskip}{8pt plus 2pt minus 2pt}
 \setcounter{tocdepth}{4}
@@ -77,73 +75,54 @@
 \widowpenalty=10000
 \clubpenalty=10000
 
-\captionsetup{
-  font=small,
-  labelfont=bf,
-  labelsep=period,
-  justification=centering,
-  singlelinecheck=false,
-}
-
-\captionsetup[sub]{font=small, labelfont=bf} 
-
-\setlist{
-    topsep=0pt,
-    partopsep=0pt,
-    parsep=0pt,
-    itemsep=6pt
-}
-\addbibresource{refs.bib}
-\hyphenpenalty=10000
-\exhyphenpenalty=10000
-\sloppy
-
 \definecolor{SectionBGColor}{HTML}{0066ff}
 
+% --- NEW LEVEL DEFINITION: subsubsubsection ---
+\titleclass{\subsubsubsection}{straight}[\subsubsection]
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
 
+% --- HEADING FORMATTING (Main Text) ---
 \titleformat{\section}{\normalfont\Large\bfseries\color{SectionBGColor}}{\thesection}{1em}{}
 \titleformat{\subsection}{\RaggedRight\normalfont\large\bfseries\color{SectionBGColor}}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{SectionBGColor}}{\thesubsubsection}{1em}{}
+\titleformat{\subsubsubsection}{\normalfont\normalsize\bfseries\color{SectionBGColor}}{\thesubsubsubsection}{1em}{}
 \titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\color{SectionBGColor}}{\theparagraph}{1em}{}
 
+% --- HEADING SPACING ---
 \titlespacing*{\section}{0pt}{6pt}{2pt}
 \titlespacing*{\subsection}{0pt}{6pt}{-3pt}
 \titlespacing*{\subsubsection}{0pt}{6pt}{-3pt}
+\titlespacing*{\subsubsubsection}{0pt}{6pt}{-3pt}
 
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-\renewcommand{\footnotesize}{\fontsize{11pt}{13pt}\selectfont}
+% --- TABLE OF CONTENTS FORMATTING ---
+\contentsmargin{2.55em}
 
-\addto\captionsenglish{%
-  \renewcommand{\contentsname}{Table of Contents}%
-}
+% Indent subsubsubsections and fix overlapping numbers
+\titlecontents{subsubsubsection}
+  [7.5em]                                 % Horizontal indentation
+  {\smallskip}                            % Vertical space
+  {\contentslabel{3.8em}}                 % Width of number box (2.1.2.1)
+  {}                                      % Text if no number
+  {\titlerule*[0.8pc]{.}\contentspage}    % Dotted line and page number
 
+% Fix for PDF bookmarks/sidebar
+\makeatletter
+\def\toclevel@subsubsubsection{4}
+\makeatother
+
+% --- REMAINING MACROS ---
+\captionsetup{font=small, labelfont=bf, labelsep=period, justification=centering, singlelinecheck=false}
+\captionsetup[sub]{font=small, labelfont=bf} 
+
+\setlist{topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=6pt}
+
+\addto\captionsenglish{\renewcommand{\contentsname}{Table of Contents}}
 \renewcommand{\appendixpagename}{\color{SectionBGColor}Appendices}
+
 \pagestyle{fancy}
 \lhead{36103: Statistical Thinking for Data Science}
 \rhead{Assignment 2: Data Analysis Report}
-
-\setlength{\bibitemsep}{3pt}
-
-\DeclareCiteCommand{\parencite}[\mkbibparens]
-  {\usebibmacro{prenote}}
-  {\usebibmacro{citeindex}%
-   \printtext[bibhyperref]{\usebibmacro{cite}}}
-  {\multicitedelim}
-  {\usebibmacro{postnote}}
-
-\DeclareCiteCommand{\cite}
-  {\usebibmacro{prenote}}
-  {\usebibmacro{citeindex}%
-   \printtext[bibhyperref]{\usebibmacro{cite}}}
-  {\multicitedelim}
-  {\usebibmacro{postnote}}
-
-\let\cite\parencite
-
-\makeatletter
-\AtEveryCitekey{\ifnameundef{shortauthor}{}{\let\cbx@apa@ifnamesaved\@firstoftwo}}
-\makeatother
-
 
 \newcommand{\sectionpage}[1]{
   \clearpage
@@ -156,13 +135,7 @@
     \node[anchor=north east, xshift=-1cm, yshift=-1cm] at (current page.north east) {
         \includegraphics[width=4cm]{img/uts_logo_white.png}
     };
-    \node[
-        anchor=center, 
-        align=left,
-        text width=0.8\paperwidth,
-        yshift=8cm,
-        xshift=0cm
-    ] at (current page.center) {
+    \node[anchor=center, align=left, text width=0.8\paperwidth, yshift=8cm, xshift=0cm] at (current page.center) {
         \color{white}\fontsize{32}{48}\selectfont\bfseries #1
     };
   \end{tikzpicture}
@@ -171,59 +144,58 @@
 }
 
 
+
 \begin{document}
 \begin{titlepage}
 \thispagestyle{empty}
 
-\begin{tikzpicture}[remember picture, overlay]
-
 \AddToShipoutPicture*{\includegraphics[width=\paperwidth]{img/The-Purpose-of-Public-Pol-002.jpg}}
 
-% Logo
-\node[anchor=north west, xshift=1cm, yshift=-1.5cm] at (current page.north west) {
-    \includegraphics[width=4.2cm]{img/uts_logo_white.png}
+\begin{tikzpicture}[remember picture, overlay]
+
+\node[anchor=north east, xshift=-1.5cm, yshift=-1.5cm] at (current page.north east) {
+    \includegraphics[width=4.5cm]{img/uts_logo_white.png}
 };
 
-% Main Title
 \node[
     anchor=north west,
     align=left,
-    text width=0.6\paperwidth,
-    xshift=6cm,
-    yshift=-2.3cm
+    text width=0.7\paperwidth,
+    xshift=1.5cm,
+    yshift=-2.8cm 
 ] at (current page.north west) {
     \color{white}
-    {\fontsize{24}{28}\selectfont\bfseries Assignment 2: \\ Data Analysis Report}
+    {\fontsize{32}{38}\selectfont\bfseries Assignment 2:}\\[0.3cm]
+    {\fontsize{28}{34}\selectfont Data Analysis Report}
 };
 
-% Subject Line
 \node[
     anchor=north west,
     align=left,
-    text width=0.6\paperwidth,
-    xshift=6cm,
-    yshift=-4.5cm
+    text width=0.7\paperwidth,
+    xshift=1.5cm,
+    yshift=-6cm
 ] at (current page.north west) {
     \color{white}
-    {\fontsize{12}{14}\selectfont 36103: Statistical Thinking for Data Science}
+    {\rule{2cm}{1pt}}\\[0.4cm]
+    {\fontsize{14}{18}\selectfont 36103: Statistical Thinking for Data Science}
 };
 
-% Semi-transparent box - Now anchored to the BOTTOM
 \node[
-    anchor=south west,    % Anchors to the bottom-left
+    anchor=south east,    
     align=left,
     fill=white,
-    fill opacity=0.9,
+    fill opacity=0.85, 
     text opacity=1,
-    inner sep=15pt,
-    rounded corners=2pt,
-    xshift=1.2cm,           % Stays aligned horizontally with the title
-    yshift=1.5cm          % Distance UP from the bottom edge
-] at (current page.south west) {
+    inner sep=20pt,
+    rounded corners=1pt, 
+    xshift=-1.5cm,          
+    yshift=1.5cm          
+] at (current page.south east) {
     \color{black}
-    {\fontsize{12}{16}\selectfont \textbf{Group Number:} 5} \\[0.2cm]
-    {\fontsize{11}{16}\selectfont
-    \begin{tabular}{@{}l l@{}}
+    {\fontsize{12}{14}\selectfont \textbf{Group Number: 5}} \\[0.4cm]
+    {\fontsize{10}{14}\selectfont
+    \begin{tabular}{@{}l r@{}} 
     \textbf{Yash Bankar} & (25717428) \\
     \textbf{Preran Apinakoppa} & (26583524) \\
     \textbf{Bhavya Subhash Chandar} & (25599679) \\
@@ -259,9 +231,30 @@
 \pagenumbering{arabic}
 
 \sectionpage{Introduction}
+\subsection{Problem Statement}
+Electricity supply and demand must balance every 30 minutes. When they don't, grid operators absorb the cost. NSW wholesale prices can reach \$17,500/MWh under the current market cap (Australian Energy Regulator [AER], 2025). Accurate short-term demand forecasting is what keeps dispatch decisions ahead of those spikes. 
+
+\subsection{Rationale}
+The National Electricity Market (NEM) serves around 11 million customers across eastern Australia, with NSW consuming approximately 40\% of total NEM generation (AER, 2025; National Electricity Market, 2025). Demand is not static; it shifts every 30 minutes with temperature, time of day, and day type, and the grid has no meaningful storage to absorb mismatches. 
+
+The supply side is also changing. Australia now ranks first globally in per capita solar electricity generation (Clean Energy Council [CEC], 2025), with NSW holding the highest total installed rooftop capacity of any state at 6.6 GW (PV Magazine, 2024). Rooftop solar suppresses midday grid demand but drops off sharply in late afternoon, creating a steep evening ramp that dispatchable generators must cover at short notice. NSW already sees a 34-41\% gap between its daily minimum and maximum demand, among the largest swings in the NEM (AER, 2025). 
+
+Prices reflect that volatility. In 2024, NSW average wholesale electricity prices rose 43\% year-on-year to \$150/MWh (AER, 2025). Forecasting errors at that price level carry direct costs for operators, retailers, and consumers. 
+\subsection{Project Aims and Objectives}
 \sectionpage{Methodology}
+\subsection{Modelling}
+\subsubsection{Linear Regression (Ridge)}
+\subsubsection{Gradient Boosting Trees}
+\subsubsubsection{XGBoost}
+\subsubsubsection{CatBoost}
+\subsection{Metrics}
+
 \sectionpage{Results}
 \sectionpage{Conclusion}
+\subsection{Conclusion}
+\subsection{Discussion}
+\subsection{Project Limitations and Caveats}
+\subsection{Stakeholder Analysis and Project Outcomes}
 
 \clearpage
 \sectionpage{References}
