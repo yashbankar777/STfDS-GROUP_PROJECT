@@ -35,6 +35,7 @@
 \usepackage[official]{eurosym}
 \usepackage{enumitem}
 \usepackage[style=apa, backend=biber, hyperref=true, natbib=true]{biblatex}
+\addbibresource{refs.bib}
 \usepackage{nameref}
 \usepackage[
   hidelinks,
@@ -115,6 +116,9 @@
 \lhead{36103: Statistical Thinking for Data Science}
 \rhead{Assignment 2: Data Analysis Report}
 
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+
 \newcommand{\sectionpage}[1]{
   \clearpage
   \thispagestyle{empty}
@@ -133,6 +137,33 @@
   \clearpage
   \section*{\thesection\quad #1}
 }
+
+% --- BIBLIOGRAPHY LINK FIXES ---
+
+% 1. Custom command for citations without brackets (Author, Year as one blue link)
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% 2. Parenthetical citations (Black brackets, blue Author, Year link inside)
+\DeclareCiteCommand{\parencite}[\mkbibparens]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% 3. Map \citep to \parencite for standard natbib usage
+\let\citep\parencite
+
+% 4. Ensure shortauthors (like AER) are used properly in APA style
+\makeatletter
+\AtEveryCitekey{\ifnameundef{shortauthor}{}{\let\cbx@apa@ifnamesaved\@firstoftwo}}
+\makeatother
+
 
 
 \begin{document}
@@ -218,7 +249,13 @@
 \setlength{\parindent}{0pt}
 \section*{\LARGE Executive Summary}
 \vspace*{1cm}
+Electricity demand in NSW changes with weather, time of day, and season. During peak periods, wholesale prices can reach \$17,500/MWh, so reliable short-term forecasts matter for both cost management and grid stability. 
 
+This project used high-frequency NSW data from 2022-2026 to study demand patterns and build forecasting models. Exploratory analysis showed demand is lowest in mild conditions, rises during extreme hot or cold weather, and differs between weekdays and weekends. Rooftop solar reduces midday demand but causes a sharp evening increase. 
+
+Ridge Regression explained only 37.5\% of demand variation, with a MAPE of 10.3\%. CatBoost performed best at R² 0.884 and MAPE 4.45\%, with XGBoost close behind at 0.860 and 5.16\%. 
+
+CatBoost is the recommended model. Its average error of around 389 MW means forecasts should inform decisions, not drive them outright, particularly during extreme weather or supply disruptions. 
 \end{adjustwidth}}
 
 \clearpage
@@ -233,15 +270,27 @@
 
 \sectionpage{Introduction}
 \subsection{Problem Statement}
-Electricity supply and demand must balance every 30 minutes. When they don't, grid operators absorb the cost. NSW wholesale prices can reach \$17,500/MWh under the current market cap (Australian Energy Regulator [AER], 2025). Accurate short-term demand forecasting is what keeps dispatch decisions ahead of those spikes. 
+Electricity supply and demand must balance every 30 minutes. When they don't, grid operators absorb the cost. NSW wholesale prices can reach \$17,500/MWh under the market cap that applied through mid-2025 \citep{AER2025StateEnergyMarket}. Accurate short-term demand forecasting keeps dispatch decisions ahead of those spikes.  
 
 \subsection{Rationale}
-The National Electricity Market (NEM) serves around 11 million customers across eastern Australia, with NSW consuming approximately 40\% of total NEM generation (AER, 2025; National Electricity Market, 2025). Demand is not static; it shifts every 30 minutes with temperature, time of day, and day type, and the grid has no meaningful storage to absorb mismatches. 
+The National Electricity Market (NEM) serves roughly 11 million customers across eastern Australia, with NSW being the country's largest electricity generating state \citep{aer2025som_ch2}. Demand shifts every 30 minutes with temperature, time of day, and day type, and the grid has no meaningful storage to absorb mismatches. 
 
-The supply side is also changing. Australia now ranks first globally in per capita solar electricity generation (Clean Energy Council [CEC], 2025), with NSW holding the highest total installed rooftop capacity of any state at 6.6 GW (PV Magazine, 2024). Rooftop solar suppresses midday grid demand but drops off sharply in late afternoon, creating a steep evening ramp that dispatchable generators must cover at short notice. NSW already sees a 34-41\% gap between its daily minimum and maximum demand, among the largest swings in the NEM (AER, 2025). 
+The supply side is also changing. Australia ranks first globally in per capita solar electricity generation (Clean Energy Regulator [CER], 2024), with NSW holding the highest installed rooftop capacity of any state at 7.5 GW as of mid-2025 (Clean Energy Council [CEC], 2025). Rooftop solar suppresses midday grid demand but drops off sharply in late afternoon, creating a steep evening ramp that dispatchable generators must cover at short notice. NSW already sees a 34-41\% gap between its daily minimum and maximum demand, among the largest swings in the NEM (AER, 2025). 
 
 Prices reflect that volatility. In 2024, NSW average wholesale electricity prices rose 43\% year-on-year to \$150/MWh (AER, 2025). Forecasting errors at that price level carry direct costs for operators, retailers, and consumers. 
 \subsection{Project Aims and Objectives}
+The aim of this project was to determine whether machine learning models trained on historical half-hourly NSW data can predict grid electricity demand accurately enough to support operational dispatch planning. 
+
+To support this aim, we asked: 
+
+Does temperature have a non-linear relationship with NSW grid demand across 2°C bins from 5°C to 43°C? 
+
+Do mean hourly demand profiles differ between weekdays, weekends, and public holidays in NSW? 
+
+Can an ensemble regression model predict 30-minute NSW grid demand with a MAPE below 5\% on held-out test data? 
+
+To answer these questions, we sourced and merged half-hourly AEMO data with weather, rooftop solar, and economic indicators, then ran exploratory analysis to identify key demand drivers. We built and compared Ridge Regression, XGBoost, and CatBoost models on a 60/20/20 chronological split, evaluating each on RMSE, MAE, MAPE, and Adjusted R². 
+
 \sectionpage{Methodology}
 \subsection{Modelling}
 \subsubsection{Linear Regression (Ridge)}
