@@ -3072,7 +3072,12 @@
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1" intorder="1">AER2025StateEnergyMarket</bcf:citekey>
-    <bcf:citekey order="2" intorder="1">aer2025som_ch2</bcf:citekey>
+    <bcf:citekey order="1" intorder="2">AER2025StateEnergyMarket</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">aer_our_role</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">green_solar_stats_2026</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">cec_rooftop_solar_2025</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">aer2025som_ch2</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">aer_wholesale_q4_2024</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">

@@ -139,6 +139,9 @@
 }
 
 % --- BIBLIOGRAPHY LINK FIXES ---
+\makeatletter
+\AtEveryCitekey{\global\undef\cbx@apa@lastname}
+\makeatother
 
 % 1. Custom command for citations without brackets (Author, Year as one blue link)
 \DeclareCiteCommand{\cite}
@@ -270,33 +273,33 @@ CatBoost is the recommended model. Its average error of around 389 MW means fore
 
 \sectionpage{Introduction}
 \subsection{Problem Statement}
-Electricity supply and demand must balance every 30 minutes. When they don't, grid operators absorb the cost. NSW wholesale prices can reach \$17,500/MWh under the market cap that applied through mid-2025 \citep{AER2025StateEnergyMarket}. Accurate short-term demand forecasting keeps dispatch decisions ahead of those spikes.  
+Electricity supply and demand must balance every 30 minutes. When they don't, grid operators absorb the cost. NSW wholesale prices can reach \$17,500/MWh under the market cap that applied through mid-2025 \citep{AER2025StateEnergyMarket,AER2025StateEnergyMarket}. Accurate short-term demand forecasting keeps dispatch decisions ahead of those spikes.  
 
 \subsection{Rationale}
-The National Electricity Market (NEM) serves roughly 11 million customers across eastern Australia, with NSW being the country's largest electricity generating state \citep{aer2025som_ch2}. Demand shifts every 30 minutes with temperature, time of day, and day type, and the grid has no meaningful storage to absorb mismatches. 
+The National Electricity Market (NEM) serves roughly 11 million customers across eastern Australia, with NSW being the country's largest electricity generating state \citep{aer_our_role}. Demand shifts every 30 minutes with temperature, time of day, and day type, and the grid has no meaningful storage to absorb mismatches. 
 
-The supply side is also changing. Australia ranks first globally in per capita solar electricity generation (Clean Energy Regulator [CER], 2024), with NSW holding the highest installed rooftop capacity of any state at 7.5 GW as of mid-2025 (Clean Energy Council [CEC], 2025). Rooftop solar suppresses midday grid demand but drops off sharply in late afternoon, creating a steep evening ramp that dispatchable generators must cover at short notice. NSW already sees a 34-41\% gap between its daily minimum and maximum demand, among the largest swings in the NEM (AER, 2025). 
+The supply side is also changing. Australia ranks first globally in per capita solar electricity generation \citep{green_solar_stats_2026}, with NSW holding the highest installed rooftop capacity of any state at 7.5 GW as of mid-2025 \citep{cec_rooftop_solar_2025}. Rooftop solar suppresses midday grid demand but drops off sharply in late afternoon, creating a steep evening ramp that dispatchable generators must cover at short notice. NSW already sees a 34-41\% gap between its daily minimum and maximum demand, among the largest swings in the NEM \citep{aer2025som_ch2}. 
 
-Prices reflect that volatility. In 2024, NSW average wholesale electricity prices rose 43\% year-on-year to \$150/MWh (AER, 2025). Forecasting errors at that price level carry direct costs for operators, retailers, and consumers. 
+Prices reflect that volatility. In 2024, NSW average wholesale electricity prices rose 43\% year-on-year to \$150/MWh \citep{aer_wholesale_q4_2024}. Forecasting errors at that price level carry direct costs for operators, retailers, and consumers. 
 \subsection{Project Aims and Objectives}
-The aim of this project was to determine whether machine learning models trained on historical half-hourly NSW data can predict grid electricity demand accurately enough to support operational dispatch planning. 
+The aim of this project was to determine whether machine learning models trained on historical half-hourly NSW data can predict grid electricity demand accurately enough to support operational dispatch planning. To support this aim, we asked: 
 
-To support this aim, we asked: 
 
-Does temperature have a non-linear relationship with NSW grid demand across 2°C bins from 5°C to 43°C? 
+\begin{enumerate}
+    \item Does temperature have a non-linear relationship with NSW grid demand across 2°C bins from 5°C to 43°C?
+    \item Do mean hourly demand profiles differ between weekdays, weekends, and public holidays in NSW?
+    \item Can an ensemble regression model predict 30-minute NSW grid demand with a MAPE below 5\% on held-out test data? 
+\end{enumerate}
 
-Do mean hourly demand profiles differ between weekdays, weekends, and public holidays in NSW? 
-
-Can an ensemble regression model predict 30-minute NSW grid demand with a MAPE below 5\% on held-out test data? 
-
-To answer these questions, we sourced and merged half-hourly AEMO data with weather, rooftop solar, and economic indicators, then ran exploratory analysis to identify key demand drivers. We built and compared Ridge Regression, XGBoost, and CatBoost models on a 60/20/20 chronological split, evaluating each on RMSE, MAE, MAPE, and Adjusted R². 
+To answer these questions, we sourced and merged half-hourly AEMO data with weather, rooftop solar, and economic indicators, then ran exploratory analysis to identify key demand drivers. We built and compared Ridge Regression, XGBoost, and CatBoost models on a 60:20:20 chronological split, evaluating each on RMSE, MAE, MAPE, and Adjusted R². 
 
 \sectionpage{Methodology}
-\subsection{Modelling}
+\subsection{Models}
 \subsubsection{Linear Regression (Ridge)}
 \subsubsection{Gradient Boosting Trees}
 \subsubsubsection{XGBoost}
 \subsubsubsection{CatBoost}
+\subsection{Grid Search}
 \subsection{Metrics}
 
 \sectionpage{Results}

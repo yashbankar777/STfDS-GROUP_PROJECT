@@ -19,6 +19,53 @@
 
 \refsection{0}
   \datalist[entry]{apa/apasortcite//global/global/global}
+    \entry{aer_wholesale_q4_2024}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=ead2dd37f2fdf14f65b3b6161de21b37}{%
+           family={{Australian Energy Regulator}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{un=0,uniquepart=base,hash=e55cb1d22f8e3019b9e4082692b2a39d}{%
+           family={AER},
+           familyi={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Australian Energy Regulator}%
+      }
+      \strng{namehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{fullhash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{fullhashraw}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{bibnamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{authorbibnamehash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authornamehash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authorfullhash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authorfullhashraw}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{shortauthorbibnamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthornamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthorfullhash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthorfullhashraw}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \field{extraname}{1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{note}{Accessed: 2026-05-08}
+      \field{title}{Wholesale Markets Quarterly - Q4 2024}
+      \field{type}{techreport}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://www.aer.gov.au/publications/reports/performance/wholesale-markets-quarterly-q4-2024
+      \endverb
+      \verb{url}
+      \verb https://www.aer.gov.au/publications/reports/performance/wholesale-markets-quarterly-q4-2024
+      \endverb
+    \endentry
     \entry{aer2025som_ch2}{inbook}{}{}
       \name{author}{1}{}{%
         {{hash=ead2dd37f2fdf14f65b3b6161de21b37}{%
@@ -48,10 +95,10 @@
       \strng{shortauthornamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
       \strng{shortauthorfullhash}{e55cb1d22f8e3019b9e4082692b2a39d}
       \strng{shortauthorfullhashraw}{e55cb1d22f8e3019b9e4082692b2a39d}
-      \field{extraname}{1}
+      \field{extraname}{2}
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{extradate}{1}
+      \field{extradate}{2}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \true{uniqueprimaryauthor}
@@ -95,10 +142,10 @@
       \strng{shortauthornamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
       \strng{shortauthorfullhash}{e55cb1d22f8e3019b9e4082692b2a39d}
       \strng{shortauthorfullhashraw}{e55cb1d22f8e3019b9e4082692b2a39d}
-      \field{extraname}{2}
+      \field{extraname}{3}
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{extradate}{2}
+      \field{extradate}{3}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \true{uniqueprimaryauthor}
@@ -115,9 +162,154 @@
       \verb{url}
       \verb https://www.aer.gov.au/publications/reports/performance/state-energy-market-2025
       \endverb
+    \endentry
+    \entry{aer_our_role}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=ead2dd37f2fdf14f65b3b6161de21b37}{%
+           family={{Australian Energy Regulator}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{un=0,uniquepart=base,hash=e55cb1d22f8e3019b9e4082692b2a39d}{%
+           family={AER},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{fullhash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{fullhashraw}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{bibnamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{authorbibnamehash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authornamehash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authorfullhash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authorfullhashraw}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{shortauthorbibnamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthornamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthorfullhash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthorfullhashraw}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \field{extraname}{4}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.aer.gov.au/about/aer/our-role}}
+      \field{note}{Accessed: 2026-05-08}
+      \field{title}{Our role}
+      \field{year}{2026}
+    \endentry
+    \entry{cec_rooftop_solar_2025}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=11558699fa5940f091e74f9cbcdf4bb9}{%
+           family={{Clean Energy Council}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{un=0,uniquepart=base,hash=5724fb9a7ea66d764e09a0a53a88fabe}{%
+           family={CEC},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \strng{fullhash}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{fullhashraw}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{bibnamehash}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \strng{authorbibnamehash}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{authornamehash}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{authorfullhash}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{authorfullhashraw}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{shortauthorbibnamehash}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \strng{shortauthornamehash}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \strng{shortauthorfullhash}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \strng{shortauthorfullhashraw}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://cleanenergycouncil.org.au/news-resources/australia-powers-ahead-on-rooftop-solar-as-nation-set-to-achieve-2030-rooftop-target-new-report}}
+      \field{month}{9}
+      \field{note}{Accessed: 2026-05-08}
+      \field{title}{Australia powers ahead on rooftop solar as nation set to achieve 2030 rooftop target - new report finds}
+      \field{year}{2025}
+    \endentry
+    \entry{green_solar_stats_2026}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=92062fa805f04a7f7e61663ca57ddf9a}{%
+           family={{Green.com.au}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{fullhash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{fullhashraw}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{bibnamehash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{authorbibnamehash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{authornamehash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{authorfullhash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{authorfullhashraw}{92062fa805f04a7f7e61663ca57ddf9a}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.green.com.au/solar/solar-statistics}}
+      \field{note}{Accessed: 2026-05-08}
+      \field{title}{Solar Statistics 2026}
+      \field{year}{2026}
     \endentry
   \enddatalist
   \datalist[entry]{apa/global//global/global/global}
+    \entry{aer_wholesale_q4_2024}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=ead2dd37f2fdf14f65b3b6161de21b37}{%
+           family={{Australian Energy Regulator}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{un=0,uniquepart=base,hash=e55cb1d22f8e3019b9e4082692b2a39d}{%
+           family={AER},
+           familyi={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Australian Energy Regulator}%
+      }
+      \strng{namehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{fullhash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{fullhashraw}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{bibnamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{authorbibnamehash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authornamehash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authorfullhash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authorfullhashraw}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{shortauthorbibnamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthornamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthorfullhash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthorfullhashraw}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \field{extraname}{1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{note}{Accessed: 2026-05-08}
+      \field{title}{Wholesale Markets Quarterly - Q4 2024}
+      \field{type}{techreport}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://www.aer.gov.au/publications/reports/performance/wholesale-markets-quarterly-q4-2024
+      \endverb
+      \verb{url}
+      \verb https://www.aer.gov.au/publications/reports/performance/wholesale-markets-quarterly-q4-2024
+      \endverb
+    \endentry
     \entry{aer2025som_ch2}{inbook}{}{}
       \name{author}{1}{}{%
         {{hash=ead2dd37f2fdf14f65b3b6161de21b37}{%
@@ -147,10 +339,10 @@
       \strng{shortauthornamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
       \strng{shortauthorfullhash}{e55cb1d22f8e3019b9e4082692b2a39d}
       \strng{shortauthorfullhashraw}{e55cb1d22f8e3019b9e4082692b2a39d}
-      \field{extraname}{1}
+      \field{extraname}{2}
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{extradate}{1}
+      \field{extradate}{2}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \true{uniqueprimaryauthor}
@@ -194,10 +386,10 @@
       \strng{shortauthornamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
       \strng{shortauthorfullhash}{e55cb1d22f8e3019b9e4082692b2a39d}
       \strng{shortauthorfullhashraw}{e55cb1d22f8e3019b9e4082692b2a39d}
-      \field{extraname}{2}
+      \field{extraname}{3}
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{extradate}{2}
+      \field{extradate}{3}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \true{uniqueprimaryauthor}
@@ -214,6 +406,104 @@
       \verb{url}
       \verb https://www.aer.gov.au/publications/reports/performance/state-energy-market-2025
       \endverb
+    \endentry
+    \entry{aer_our_role}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=ead2dd37f2fdf14f65b3b6161de21b37}{%
+           family={{Australian Energy Regulator}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{un=0,uniquepart=base,hash=e55cb1d22f8e3019b9e4082692b2a39d}{%
+           family={AER},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{fullhash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{fullhashraw}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{bibnamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{authorbibnamehash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authornamehash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authorfullhash}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{authorfullhashraw}{ead2dd37f2fdf14f65b3b6161de21b37}
+      \strng{shortauthorbibnamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthornamehash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthorfullhash}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \strng{shortauthorfullhashraw}{e55cb1d22f8e3019b9e4082692b2a39d}
+      \field{extraname}{4}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.aer.gov.au/about/aer/our-role}}
+      \field{note}{Accessed: 2026-05-08}
+      \field{title}{Our role}
+      \field{year}{2026}
+    \endentry
+    \entry{cec_rooftop_solar_2025}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=11558699fa5940f091e74f9cbcdf4bb9}{%
+           family={{Clean Energy Council}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{un=0,uniquepart=base,hash=5724fb9a7ea66d764e09a0a53a88fabe}{%
+           family={CEC},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \strng{fullhash}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{fullhashraw}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{bibnamehash}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \strng{authorbibnamehash}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{authornamehash}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{authorfullhash}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{authorfullhashraw}{11558699fa5940f091e74f9cbcdf4bb9}
+      \strng{shortauthorbibnamehash}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \strng{shortauthornamehash}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \strng{shortauthorfullhash}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \strng{shortauthorfullhashraw}{5724fb9a7ea66d764e09a0a53a88fabe}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://cleanenergycouncil.org.au/news-resources/australia-powers-ahead-on-rooftop-solar-as-nation-set-to-achieve-2030-rooftop-target-new-report}}
+      \field{month}{9}
+      \field{note}{Accessed: 2026-05-08}
+      \field{title}{Australia powers ahead on rooftop solar as nation set to achieve 2030 rooftop target - new report finds}
+      \field{year}{2025}
+    \endentry
+    \entry{green_solar_stats_2026}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=92062fa805f04a7f7e61663ca57ddf9a}{%
+           family={{Green.com.au}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{fullhash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{fullhashraw}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{bibnamehash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{authorbibnamehash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{authornamehash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{authorfullhash}{92062fa805f04a7f7e61663ca57ddf9a}
+      \strng{authorfullhashraw}{92062fa805f04a7f7e61663ca57ddf9a}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.green.com.au/solar/solar-statistics}}
+      \field{note}{Accessed: 2026-05-08}
+      \field{title}{Solar Statistics 2026}
+      \field{year}{2026}
     \endentry
   \enddatalist
 \endrefsection
