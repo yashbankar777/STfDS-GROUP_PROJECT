@@ -175,6 +175,8 @@
 \let\citep\parencite
 
 
+
+
 \DeclareSortingTemplate{apaextradate}{
   \sort{
     \field{presort}
@@ -206,6 +208,53 @@
 }
 
 \setlength{\bibitemsep}{0.8\baselineskip}
+
+% Bubbles
+\pgfkeys{
+  /businessbubble/.is family, /businessbubble,
+  default/.style = {
+    color = SectionBGColor,
+    opacity = 0.5,
+    x = 0,
+    y = 0,
+    size = 4cm,
+    textcolor = white,
+  },
+  color/.estore in     = \bcolor,
+  opacity/.estore in   = \bopacity,
+  x/.estore in         = \bx,
+  y/.estore in         = \by,
+  size/.estore in      = \bsize,
+  textcolor/.estore in = \btextcol,
+}
+
+\newcommand{\bubble}[2][]{%
+  \pgfkeys{/businessbubble, default, #1}
+  % Compute text width = 0.65 × circle diameter (fits snugly inside the circle)
+  \pgfmathsetmacro{\btextwidth}{\bsize * 0.65}
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[
+      circle,
+      fill=\bcolor,
+      fill opacity=\bopacity,
+      text opacity=1,
+      minimum size=\bsize,
+      text width=\btextwidth pt,   % auto-derived, not hardcoded
+      text=\btextcol,
+      font=\rmfamily\bfseries\fontsize{8}{10}\selectfont,
+      align=center,
+      anchor=center,
+      inner sep=0pt
+    ] at ([shift={(\bx cm, \by cm)}]current page.center) {#2};
+  \end{tikzpicture}%
+}
+
+
+
+
+
+
+
 
 
 \begin{document}
@@ -295,10 +344,17 @@ Electricity demand in NSW changes with weather, time of day, and season. During 
 
 This project used high-frequency NSW data from 2022-2026 to study demand patterns and build forecasting models. Exploratory analysis showed demand is lowest in mild conditions, rises during extreme hot or cold weather, and differs between weekdays and weekends. Rooftop solar reduces midday demand but causes a sharp evening increase. 
 
-Ridge Regression explained only 37.5\% of demand variation, with a MAPE of 10.3\%. CatBoost performed best at R² 0.884 and MAPE 4.45\%, with XGBoost close behind at 0.860 and 5.16\%. 
+% Ridge Regression explained only 37.5\% of demand variation, with a MAPE of 10.3\%. CatBoost performed best at R² 0.884 and MAPE 4.45\%, with XGBoost close behind at 0.860 and 5.16\%. 
 
 CatBoost is the recommended model. Its average error of around 389 MW means forecasts should inform decisions, not drive them outright, particularly during extreme weather or supply disruptions. 
 \end{adjustwidth}}
+
+\definecolor{bubble1}{HTML}{119dff}
+\definecolor{bubble2}{HTML}{5b4fff}
+
+\bubble[color=bubble1, opacity=1, x=-3.4, y=-5.6, size=7cm]{CatBoost achieved the best test performance: MAPE 4.45\%, Adjusted R² 0.884, MAE 389 MW. XGBoost followed closely at 5.16\% and 0.860. Ridge Regression (10.3\%, 0.375) was insufficient for grid operations. Both tree models showed no meaningful performance drop from validation to test.}
+
+\bubble[color=bubble2, opacity=1, x=3, y=-7.5, size=5cm]{Temperature and hour of day ranked as top predictors in both ensemble models, matching the U-shaped demand curve and intraday peaks from EDA.}
 
 \clearpage
 
@@ -324,8 +380,8 @@ Prices reflect that volatility. In 2024, NSW average wholesale electricity price
 The aim of this project was to determine whether machine learning models trained on historical half-hourly NSW data can predict grid electricity demand accurately enough to support operational dispatch planning. To support this aim, we asked: 
 
 
-\begin{enumerate}
-    \item Does temperature have a non-linear relationship with NSW grid demand across 2°C bins from 5°C to 43°C?
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Does temperature have a non-linear relationship with NSW grid demand across 2\textdegree{}C bins from 5\textdegree{}C to 43\textdegree{}C?
     \item Do mean hourly demand profiles differ between weekdays, weekends, and public holidays in NSW?
     \item Can an ensemble regression model predict 30-minute NSW grid demand with a MAPE below 5\% on held-out test data? 
 \end{enumerate}
