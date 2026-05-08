@@ -34,7 +34,7 @@
 \usepackage{amsmath}
 \usepackage[official]{eurosym}
 \usepackage{enumitem}
-\usepackage[style=apa, backend=biber, hyperref=true, natbib=true]{biblatex}
+\usepackage[style=apa, backend=biber, hyperref=true, natbib=true, uniquename=full, maxcitenames=999, mincitenames=999, sortcites=true, sorting=apa]{biblatex}
 \addbibresource{refs.bib}
 \usepackage{nameref}
 \usepackage[
@@ -139,34 +139,73 @@
 }
 
 % --- BIBLIOGRAPHY LINK FIXES ---
+% Always print author names in every citation
 \makeatletter
-\AtEveryCitekey{\global\undef\cbx@apa@lastname}
+\renewbibmacro*{cite:apa:labeldate+extradate}{%
+  \printtext[bibhyperref]{%
+    \printlabeldateextra}}
 \makeatother
 
-% 1. Custom command for citations without brackets (Author, Year as one blue link)
+% Custom inline cite
 \DeclareCiteCommand{\cite}
   {\usebibmacro{prenote}}
-  {\usebibmacro{citeindex}%
-   \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {%
+    \usebibmacro{citeindex}%
+    \printnames{labelname}%
+    \setunit{\nameyeardelim}%
+    \printtext[bibhyperref]{%
+      \printfield{year}%
+      \printfield{extradate}}}
   {\multicitedelim}
   {\usebibmacro{postnote}}
 
-% 2. Parenthetical citations (Black brackets, blue Author, Year link inside)
+% Parenthetical cite
 \DeclareCiteCommand{\parencite}[\mkbibparens]
   {\usebibmacro{prenote}}
-  {\usebibmacro{citeindex}%
-   \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {%
+    \usebibmacro{citeindex}%
+    \printnames{labelname}%
+    \setunit{\nameyeardelim}%
+    \printtext[bibhyperref]{%
+      \printfield{year}%
+      \printfield{extradate}}}
   {\multicitedelim}
   {\usebibmacro{postnote}}
 
-% 3. Map \citep to \parencite for standard natbib usage
 \let\citep\parencite
 
-% 4. Ensure shortauthors (like AER) are used properly in APA style
-\makeatletter
-\AtEveryCitekey{\ifnameundef{shortauthor}{}{\let\cbx@apa@ifnamesaved\@firstoftwo}}
-\makeatother
 
+\DeclareSortingTemplate{apaextradate}{
+  \sort{
+    \field{presort}
+  }
+  \sort{
+    \field{sortkey}
+  }
+  \sort{
+    \field{sortname}
+    \field{author}
+    \field{editor}
+    \field{translator}
+  }
+  \sort{
+    \field{year}
+  }
+  \sort{
+    \field{extradate}
+  }
+  \sort{
+    \field{title}
+  }
+}
+
+\ExecuteBibliographyOptions{sortcites=true}
+
+\DeclareLabeldate{%
+  \field{year}
+}
+
+\setlength{\bibitemsep}{0.8\baselineskip}
 
 
 \begin{document}
@@ -273,7 +312,7 @@ CatBoost is the recommended model. Its average error of around 389 MW means fore
 
 \sectionpage{Introduction}
 \subsection{Problem Statement}
-Electricity supply and demand must balance every 30 minutes. When they don't, grid operators absorb the cost. NSW wholesale prices can reach \$17,500/MWh under the market cap that applied through mid-2025 \citep{AER2025StateEnergyMarket,AER2025StateEnergyMarket}. Accurate short-term demand forecasting keeps dispatch decisions ahead of those spikes.  
+Electricity supply and demand must balance every 30 minutes. When they don't, grid operators absorb the cost. NSW wholesale prices can reach \$17,500/MWh under the market cap that applied through mid-2025 \citep{AER2025StateEnergyMarket}. Accurate short-term demand forecasting keeps dispatch decisions ahead of those spikes.  
 
 \subsection{Rationale}
 The National Electricity Market (NEM) serves roughly 11 million customers across eastern Australia, with NSW being the country's largest electricity generating state \citep{aer_our_role}. Demand shifts every 30 minutes with temperature, time of day, and day type, and the grid has no meaningful storage to absorb mismatches. 
@@ -313,4 +352,5 @@ To answer these questions, we sourced and merged half-hourly AEMO data with weat
 \sectionpage{References}
 \printbibliography[heading=none]
 \clearpage
+\sectionpage{Appendices}
 \end{document}

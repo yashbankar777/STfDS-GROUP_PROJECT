@@ -50,7 +50,7 @@
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradate}{1}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{shortauthor}
       \field{labeltitlesource}{title}
@@ -100,7 +100,7 @@
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradate}{2}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{shortauthor}
       \field{labeltitlesource}{title}
@@ -147,7 +147,7 @@
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradate}{3}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{shortauthor}
       \field{labeltitlesource}{title}
@@ -190,7 +190,7 @@
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{shortauthor}
       \field{labeltitlesource}{title}
@@ -225,7 +225,7 @@
       \field{sortinit}{C}
       \field{sortinithash}{4d103a86280481745c9c897c925753c0}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{shortauthor}
       \field{labeltitlesource}{title}
@@ -252,7 +252,7 @@
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
@@ -294,7 +294,7 @@
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradate}{1}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{shortauthor}
       \field{labeltitlesource}{title}
@@ -344,7 +344,7 @@
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradate}{2}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{shortauthor}
       \field{labeltitlesource}{title}
@@ -391,7 +391,7 @@
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradate}{3}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{shortauthor}
       \field{labeltitlesource}{title}
@@ -434,7 +434,7 @@
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{shortauthor}
       \field{labeltitlesource}{title}
@@ -469,7 +469,7 @@
       \field{sortinit}{C}
       \field{sortinithash}{4d103a86280481745c9c897c925753c0}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{shortauthor}
       \field{labeltitlesource}{title}
@@ -496,7 +496,7 @@
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}

@@ -74,11 +74,7 @@
     </bcf:option>
     <bcf:option type="multivalued">
       <bcf:key>labeldatespec</bcf:key>
-      <bcf:value order="1" type="field">pubstate</bcf:value>
-      <bcf:value order="2" type="field">date</bcf:value>
-      <bcf:value order="3" type="field">eventdate</bcf:value>
-      <bcf:value order="4" type="field">year</bcf:value>
-      <bcf:value order="5" type="string">nodate</bcf:value>
+      <bcf:value order="1" type="field">year</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>julian</bcf:key>
@@ -98,7 +94,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
-      <bcf:value>2</bcf:value>
+      <bcf:value>999</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxsortnames</bcf:key>
@@ -118,7 +114,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>mincitenames</bcf:key>
-      <bcf:value>1</bcf:value>
+      <bcf:value>999</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>minsortnames</bcf:key>
@@ -182,7 +178,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquename</bcf:key>
-      <bcf:value>init</bcf:value>
+      <bcf:value>full</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniqueprimaryauthor</bcf:key>
@@ -331,11 +327,7 @@
     </bcf:option>
     <bcf:option type="multivalued">
       <bcf:key>labeldatespec</bcf:key>
-      <bcf:value order="1" type="field">pubstate</bcf:value>
-      <bcf:value order="2" type="field">date</bcf:value>
-      <bcf:value order="3" type="field">eventdate</bcf:value>
-      <bcf:value order="4" type="field">year</bcf:value>
-      <bcf:value order="5" type="string">nodate</bcf:value>
+      <bcf:value order="1" type="field">year</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxalphanames</bcf:key>
@@ -347,7 +339,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
-      <bcf:value>2</bcf:value>
+      <bcf:value>999</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxsortnames</bcf:key>
@@ -367,7 +359,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>mincitenames</bcf:key>
-      <bcf:value>1</bcf:value>
+      <bcf:value>999</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>minsortnames</bcf:key>
@@ -411,7 +403,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquename</bcf:key>
-      <bcf:value>init</bcf:value>
+      <bcf:value>full</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniqueprimaryauthor</bcf:key>
@@ -558,11 +550,7 @@
     </bcf:option>
     <bcf:option type="multivalued">
       <bcf:key>labeldatespec</bcf:key>
-      <bcf:value order="1" type="field">pubstate</bcf:value>
-      <bcf:value order="2" type="field">date</bcf:value>
-      <bcf:value order="3" type="field">eventdate</bcf:value>
-      <bcf:value order="4" type="field">year</bcf:value>
-      <bcf:value order="5" type="string">nodate</bcf:value>
+      <bcf:value order="1" type="field">year</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxalphanames</bcf:key>
@@ -574,7 +562,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
-      <bcf:value>2</bcf:value>
+      <bcf:value>999</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxsortnames</bcf:key>
@@ -594,7 +582,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>mincitenames</bcf:key>
-      <bcf:value>1</bcf:value>
+      <bcf:value>999</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>minsortnames</bcf:key>
@@ -638,7 +626,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquename</bcf:key>
-      <bcf:value>init</bcf:value>
+      <bcf:value>full</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniqueprimaryauthor</bcf:key>
@@ -799,7 +787,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
-      <bcf:value>2</bcf:value>
+      <bcf:value>999</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxsortnames</bcf:key>
@@ -819,7 +807,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>mincitenames</bcf:key>
-      <bcf:value>1</bcf:value>
+      <bcf:value>999</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>minsortnames</bcf:key>
@@ -863,7 +851,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquename</bcf:key>
-      <bcf:value>init</bcf:value>
+      <bcf:value>full</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniqueprimaryauthor</bcf:key>
@@ -3072,7 +3060,6 @@
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1" intorder="1">AER2025StateEnergyMarket</bcf:citekey>
-    <bcf:citekey order="1" intorder="2">AER2025StateEnergyMarket</bcf:citekey>
     <bcf:citekey order="2" intorder="1">aer_our_role</bcf:citekey>
     <bcf:citekey order="3" intorder="1">green_solar_stats_2026</bcf:citekey>
     <bcf:citekey order="4" intorder="1">cec_rooftop_solar_2025</bcf:citekey>
