@@ -231,7 +231,7 @@
 \newcommand{\bubble}[2][]{%
   \pgfkeys{/businessbubble, default, #1}
   % Compute text width = 0.65 × circle diameter (fits snugly inside the circle)
-  \pgfmathsetmacro{\btextwidth}{\bsize * 0.65}
+  \pgfmathsetmacro{\btextwidth}{\bsize * 0.72}
   \begin{tikzpicture}[remember picture, overlay]
     \node[
       circle,
@@ -241,10 +241,11 @@
       minimum size=\bsize,
       text width=\btextwidth pt,   % auto-derived, not hardcoded
       text=\btextcol,
-      font=\rmfamily\bfseries\fontsize{8}{10}\selectfont,
+      font=\rmfamily\fontsize{10}{10}\selectfont,
       align=center,
       anchor=center,
-      inner sep=0pt
+      inner sep=0pt,
+      execute at begin node={\centering\hyphenpenalty=10000\exhyphenpenalty=10000},
     ] at ([shift={(\bx cm, \by cm)}]current page.center) {#2};
   \end{tikzpicture}%
 }
@@ -352,9 +353,10 @@ CatBoost is the recommended model. Its average error of around 389 MW means fore
 \definecolor{bubble1}{HTML}{119dff}
 \definecolor{bubble2}{HTML}{5b4fff}
 
-\bubble[color=bubble1, opacity=1, x=-3.4, y=-5.6, size=7cm]{CatBoost achieved the best test performance: MAPE 4.45\%, Adjusted R² 0.884, MAE 389 MW. XGBoost followed closely at 5.16\% and 0.860. Ridge Regression (10.3\%, 0.375) was insufficient for grid operations. Both tree models showed no meaningful performance drop from validation to test.}
 
-\bubble[color=bubble2, opacity=1, x=3, y=-7.5, size=5cm]{Temperature and hour of day ranked as top predictors in both ensemble models, matching the U-shaped demand curve and intraday peaks from EDA.}
+\bubble[color=bubble1, opacity=1, x=-3.4, y=-5.6, size=8cm]{CatBoost achieved the best test performance: MAPE 4.45\%, Adjusted R² 0.884, MAE 389 MW. \\[0.3cm] XGBoost followed closely at 5.16\% and 0.860. Ridge Regression (10.3\%, 0.375) was insufficient for grid operations. \\[0.3cm] Both tree models showed no meaningful performance drop from validation to test.}
+
+\bubble[color=bubble2, opacity=1, x=2.8, y=-7.9, size=6.4cm]{Temperature and hour of day ranked as top predictors in both ensemble models, matching the U-shaped demand curve and intraday peaks from EDA.}
 
 \clearpage
 
