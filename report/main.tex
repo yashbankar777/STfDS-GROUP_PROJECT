@@ -139,6 +139,25 @@
   \section*{\thesection\quad #1}
 }
 
+\newcommand{\sectionpageunum}[1]{
+  \clearpage
+  \thispagestyle{empty}
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[SectionBGColor] (current page.south west) rectangle (current page.north east);
+    \node[anchor=north east, xshift=-1cm, yshift=-1cm] at (current page.north east) {
+        \includegraphics[width=4cm]{img/uts_logo_white.png}
+    };
+    \node[anchor=center, align=left, text width=0.8\paperwidth, yshift=8cm, xshift=0cm] at (current page.center) {
+        \color{white}\fontsize{32}{48}\selectfont\bfseries #1
+    };
+  \end{tikzpicture}
+  \clearpage
+  \section*{#1}
+}
+
+
 % --- BIBLIOGRAPHY LINK FIXES ---
 % Always print author names in every citation
 \makeatletter
@@ -354,8 +373,8 @@ CatBoost is the recommended model. Its average error of around 389 MW means fore
 \tableofcontents
 
 \clearpage
-\listoffigures
 \listoftables
+\listoffigures
 \clearpage
 
 \pagenumbering{arabic}
@@ -402,7 +421,7 @@ Gradient Boosted Decision Trees (GBDT) are a non-parametric ensemble learning te
         column{1} = {font=\bfseries},
         hlines,
     }
-        Model & Definition & Methodology Rationale \\
+        Model & Description & Methodology Rationale \\
         XGBoost & Scalable GBDT library designed for high computational efficiency. & Selected to address non-linear relationships in the data through sequential tree-building and dual regularisation (L1 and L2) to control model complexity. \\
         CatBoost & Advanced GBDT algorithm that utilises symmetric trees and ordered boosting to reduce prediction shift and handle categorical features. & Chosen for its superior ability to generalise on unseen data and its efficient handling of categorical features (such as 'Season' and 'Holiday') without extensive manual encoding. \\
     \end{tblr}
@@ -412,12 +431,12 @@ Gradient Boosted Decision Trees (GBDT) are a non-parametric ensemble learning te
 Hyperparameter optimisation is performed via Grid Search with \(k\)-fold Cross-Validation. Through exhaustive predefined parameter grids, we identified configurations that minimised generalisation error of each model.
 
 \subsection{Metrics}
-Model performance was evaluated using a hold-out test set to ensure generalisability, with predictive accuracy quantified through Mean Absolute Percentage Error (MAPE) and Root Mean Square Error (RMSE) to penalise significant forecasting deviations during peak periods. Adjusted $R^2$ was utilised to measure the proportion of variance explained while accounting for the increased complexity of the multi-feature feature set. The following \autoref{tab:metrics} below illustrates the chosen metrics.
+Model performance was evaluated using a hold-out test set to ensure generalisability, with predictive accuracy quantified through Mean Absolute Percentage Error (MAPE) and Root Mean Square Error (RMSE) to penalise significant forecasting deviations during peak periods. Adjusted $R^2$ was utilised to measure the proportion of variance explained while accounting for the increased complexity of the multi-feature feature set. The following \autoref{tab:metrics_desc} below illustrates the chosen metrics.
 
 \begin{table}[h]
     \centering
-    \caption{Model Performance Metrics}
-    \label{tab:metrics}
+    \caption{Chosen Performance Metrics}
+    \label{tab:metrics_desc}
     \begin{tblr}{
         colspec = {|l|l|l|},
         rows = {2-Z}{rowsep=4pt, font=\fontsize{10}{11}\selectfont}, 
@@ -426,18 +445,18 @@ Model performance was evaluated using a hold-out test set to ensure generalisabi
         hlines,
     }
         Metric & Purpose & Formula \\
-        MAE & Average absolute error in MW; operationally interpretable. & $\frac{1}{n}\sum|y_i - \hat{y}_i|$ \\
+        MAE & Average absolute error in MW, operationally interpretable. & $\frac{1}{n}\sum|y_i - \hat{y}_i|$ \\
         MAPE & Scale-independent accuracy across demand magnitudes. & $\frac{1}{n}\sum\left|\frac{y_i - \hat{y}_i}{y_i}\right|\times 100$ \\
         RMSE & Penalises large outliers in peak demand periods. & $\sqrt{\frac{1}{n}\sum(y_i - \hat{y}_i)^2}$ \\
         Adjusted R² & Explained variance penalised for predictor count. & $1 - \frac{(1-R^2)(n-1)}{n-p-1}$ \\
     \end{tblr}
 \end{table}
 
-
-
-
-
 \sectionpage{Results}
+
+
+
+
 \sectionpage{Conclusion}
 \subsection{Conclusion}
 \subsection{Discussion}
@@ -445,8 +464,54 @@ Model performance was evaluated using a hold-out test set to ensure generalisabi
 \subsection{Stakeholder Analysis and Project Outcomes}
 
 \clearpage
-\sectionpage{References}
+%TC:ignore
+\sectionpageunum{References}
 \printbibliography[heading=none]
 \clearpage
-\sectionpage{Appendices}
+\sectionpageunum{Appendices}
+\subsection{Exploratory Data Analysis}
+The objective of this exploratory phase was to move beyond the raw complexity to identify the primary drivers of Gross Energy Demand. In light of the data science project cycle, this EDA served two critical functions: \textbf{Feature Selection} and \textbf{Operational Insights}.
+
+\subsubsection{General Exploration}
+Observing multicollinearity such as through a correlation heatmap is critical because it identifies highly redundant predictors that can destabilise the model, inflate the variance of coefficient estimates, and make it impossible to determine the individual mathematical contribution of each variable to the target output.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{img/multicollinearity_chart.pdf}
+    \caption{Multicollinearity Matrix on Raw Data}
+\end{figure}
+
+\subsubsection{Does temperature have a non-linear relationship with NSW grid demand across 2°C bins?}
+A clear U-shaped relationship was observed between temperature and mean grid demand (\autoref{fig:rq1}). Demand was lowest near 21°C and rose sharply at both cold and hot extremes, directly ruling out linear modelling.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/rq1_temp_vs_demand.png}
+  \caption[Mean NSW grid electricity demand across temperature bins.]{Mean NSW grid electricity demand (MW) across 2°C temperature bins (5°C-43°C). A U-shaped pattern is evident, with lowest demand near the comfort zone (~21°C, ~7,000 MW), rising at cold extremes due to heating load and hot extremes due to air-conditioning. Shaded band represents ±1 SD.}
+  \label{fig:rq1}
+\end{figure}
+
+
+\subsubsection{Do mean hourly demand profiles differ between weekdays, weekends, and public holidays?}
+Weekday demand showed a morning commercial peak at 8 AM (~8,200 MW) and an evening residential peak at 7 PM (~9,500 MW). Weekend and holiday profiles were 1,000-1,500 MW lower with no morning peak (Figure 2). An unexpected finding was a pronounced midday dip across all day types driven by rooftop solar, forming the classic “duck curve” pattern (\autoref{fig:rq2}).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/rq2_intraday_demand.png}
+  \caption[Mean NSW intraday electricity demand by day type.]{Mean NSW grid electricity demand (MW) by hour of day for weekdays (solid blue), weekends (dashed orange), and public holidays (dotted red). Weekdays show a morning peak at 8 AM (~8,200 MW) and an evening peak at 7 PM (~9,500 MW). Weekend and holiday profiles are 1,000–1,500 MW lower with no commercial morning peak.}
+  \label{fig:rq2}
+\end{figure}
+
+
+
+\subsubsection{Can an ensemble regression model predict 30-minute NSW grid demand with MAPE below 5\%?}
+Three models were compared on held-out test data (Table 1). Ridge Regression failed to capture non-linear patterns (MAPE 10.31\%, R² = 0.389). XGBoost improved but showed overfitting (MAPE 5.83\%, R² = 0.836). CatBoost generalised best across all metrics, meeting the sub-5\% threshold. Regression assumptions were verified via QQ-plots (\autoref{fig:rq3}).
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/rq3_solar_vs_demand.png}
+  \caption[Impact of rooftop solar on NSW grid demand (the "duck curve").]{Mean hourly rooftop solar generation (MW, right axis, orange) overlaid on gross pre-solar demand (solid blue) and net post-solar grid demand (dashed teal). Solar peaks near midday (~3,000 MW), suppressing grid demand and creating the sharp evening ramp as generation drops — the “duck curve” pattern.}
+  \label{fig:rq3}
+\end{figure}
+\clearpage
+\subsection{Modelling Code}
+%TC:endignore
 \end{document}

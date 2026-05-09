@@ -15,6 +15,12 @@
 \contentsline {subsection}{\numberline {4.2}Discussion}{8}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Project Limitations and Caveats}{8}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Stakeholder Analysis and Project Outcomes}{8}{subsection.4.4}%
-\contentsline {section}{\numberline {5}References}{9}{section*.7}%
-\contentsline {section}{\numberline {6}Appendices}{11}{section*.8}%
+\contentsline {section}{References}{9}{section*.7}%
+\contentsline {section}{Appendices}{11}{section*.8}%
+\contentsline {subsection}{\numberline {4.5}Exploratory Data Analysis}{12}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}General Exploration}{12}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Does temperature have a non-linear relationship with NSW grid demand across 2°C bins?}{12}{subsubsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.3}Do mean hourly demand profiles differ between weekdays, weekends, and public holidays?}{13}{subsubsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.4}Can an ensemble regression model predict 30-minute NSW grid demand with MAPE below 5\%?}{13}{subsubsection.4.5.4}%
+\contentsline {subsection}{\numberline {4.6}Modelling Code}{15}{subsection.4.6}%
 \contentsfinish 
