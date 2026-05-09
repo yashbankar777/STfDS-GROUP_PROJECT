@@ -401,11 +401,7 @@ CatBoost is the recommended model. Its average error of around 389 MW means fore
 Electricity supply and demand must balance every 30 minutes. When they don't, grid operators absorb the cost. NSW wholesale prices can reach \$17,500/MWh under the market cap that applied through mid-2025 \citep{AER2025StateEnergyMarket}. Accurate short-term demand forecasting keeps dispatch decisions ahead of those spikes.  
 
 \subsection{Rationale}
-The National Electricity Market (NEM) serves roughly 11 million customers across eastern Australia, with NSW being the country's largest electricity generating state \citep{aer_our_role}. Demand shifts every 30 minutes with temperature, time of day, and day type, and the grid has no meaningful storage to absorb mismatches. 
-
-The supply side is also changing. Australia ranks first globally in per capita solar electricity generation \citep{green_solar_stats_2026}, with NSW holding the highest installed rooftop capacity of any state at 7.5 GW as of mid-2025 \citep{cec_rooftop_solar_2025}. Rooftop solar suppresses midday grid demand but drops off sharply in late afternoon, creating a steep evening ramp that dispatchable generators must cover at short notice. NSW already sees a 34-41\% gap between its daily minimum and maximum demand, among the largest swings in the NEM \citep{aer2025som_ch2}. 
-
-Prices reflect that volatility. In 2024, NSW average wholesale electricity prices rose 43\% year-on-year to \$150/MWh \citep{aer_wholesale_q4_2024}. Forecasting errors at that price level carry direct costs for operators, retailers, and consumers. 
+Serving 11 million customers, the NEM relies on NSW as its primary generator \citep{aer_our_role}. However, the lack of storage makes the grid vulnerable to demand swings. NSW’s 7.5 GW of rooftop solar (the highest globally per capita) creates a "duck curve" effect: suppressing midday demand before requiring a massive evening ramp from dispatchable generators \citep{cec_rooftop_solar_2025, green_solar_stats_2026}. This volatility drove 2024 wholesale prices up 43\% to \$150/MWh \citep{aer_wholesale_q4_2024}, making accurate forecasting critical to reducing costs. 
 \subsection{Project Aims and Objectives}
 The aim of this project was to determine whether machine learning models trained on historical half-hourly NSW data can predict grid electricity demand accurately enough to support operational dispatch planning. To support this aim, we asked: 
 
@@ -556,7 +552,7 @@ Weekday demand showed a morning commercial peak at 8 AM (~8,200 MW) and an eveni
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{img/rq2_intraday_demand.png}
-  \caption[Mean NSW intraday electricity demand by day type.]{Mean NSW grid electricity demand (MW) by hour of day for weekdays (solid blue), weekends (dashed orange), and public holidays (dotted red). Weekdays show a morning peak at 8 AM (~8,200 MW) and an evening peak at 7 PM (~9,500 MW). Weekend and holiday profiles are 1,000–1,500 MW lower with no commercial morning peak.}
+  \caption[Mean NSW intraday electricity demand by day type.]{Mean NSW grid electricity demand (MW) by hour of day for weekdays (solid blue), weekends (dashed orange), and public holidays (dotted red). Weekdays show a morning peak at 8 AM (\~8,200 MW) and an evening peak at 7 PM (\~9,500 MW). Weekend and holiday profiles are 1,000–1,500 MW lower with no commercial morning peak.}
   \label{fig:rq2}
 \end{figure}
 

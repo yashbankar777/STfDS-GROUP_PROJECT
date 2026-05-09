@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.5.9)  9 MAY 2026 18:54
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.5.9)  9 MAY 2026 19:16
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -2624,7 +2624,7 @@ File: img/uts_logo_white.png Graphic file (type bmp)
 File: img/multicollinearity_chart.pdf Graphic file (type pdf)
 <use img/multicollinearity_chart.pdf>
 
-Overfull \hbox (0.88809pt too wide) in paragraph at lines 542--542
+Overfull \hbox (0.88809pt too wide) in paragraph at lines 538--538
 |[]\TU/Inter(0)/b/n/12 Does temperature have a non-linear relationship with NSW
  grid demand across 2°C bins?|  
  []
@@ -2691,12 +2691,12 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 76273 strings out of 402807
- 1854980 string characters out of 5444515
- 3291719 words of memory out of 5000000
- 104317 multiletter control sequences out of 15000+600000
+ 76266 strings out of 402807
+ 1854711 string characters out of 5444515
+ 3291646 words of memory out of 5000000
+ 104310 multiletter control sequences out of 15000+600000
  634211 words of font info for 90 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 94i,13n,131p,1276b,5272s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,13n,131p,1276b,5344s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on main.pdf (21 pages).
