@@ -402,17 +402,17 @@
 \setlength{\parindent}{0pt}
 \section*{\LARGE Executive Summary}
 \vspace*{1cm}
-Electricity demand in NSW changes with weather, time of day, and season. During peak periods, wholesale prices can reach \$17,500/MWh, so reliable short-term forecasts matter for both cost management and grid stability. 
+Electricity demand in NSW varies with weather, time, and season. During peak periods, wholesale prices can reach \$17,500/MWh, making accurate forecasts important for grid stability and cost management.
 
-This project used high-frequency NSW data from 2022-2026 to study demand patterns and build forecasting models. Exploratory analysis showed demand is lowest in mild conditions, rises during extreme hot or cold weather, and differs between weekdays and weekends. Rooftop solar reduces midday demand but causes a sharp evening increase. 
+This project analysed NSW electricity data from 2022 to 2026 to identify demand patterns and develop forecasting models. Demand was lowest in mild weather, increased during extreme temperatures, and differed between weekdays and weekends. Rooftop solar reduced midday demand but increased evening peaks.
 
-CatBoost is the recommended model. Its average error of around 389 MW means forecasts should inform decisions, not drive them outright, particularly during extreme weather or supply disruptions. 
+CatBoost was the best model, with an average error of about 389 MW. Its forecasts are useful for supporting operational decisions, especially under normal conditions.
 \end{adjustwidth}}
 
 \definecolor{bubble1}{HTML}{119dff}
 \definecolor{bubble2}{HTML}{5b4fff}
 
-\bubble[color=bubble1, opacity=1, x=-3.8, y=-5.6, size=8cm]{CatBoost achieved the best test performance: MAPE 4.45\%, Adjusted R² 0.884, MAE 389 MW. \\[0.3cm] XGBoost followed closely at 5.16\% and 0.860. Ridge Regression (10.3\%, 0.375) was insufficient for grid operations. \\[0.3cm] Both tree models showed no meaningful performance drop from validation to test.}
+\bubble[color=bubble1, opacity=1, x=-3.8, y=-5.6, size=8cm]{CatBoost achieved the best test performance: MAPE 4.45\%, Adjusted R² 0.884, MAE 389 MW. \\[0.3cm] XGBoost followed closely at 5.16\% and 0.860. Ridge Regression (10.3\%, 0.375) was insufficient for grid operations.}
 
 \bubble[color=bubble2, opacity=1, x=3.8, y=-8, size=6.4cm]{Temperature and hour of day ranked as top predictors in both ensemble models, matching the U-shaped demand curve and intraday peaks from EDA.}
 
@@ -447,45 +447,27 @@ To answer these questions, we sourced and merged half-hourly AEMO data with weat
 
 \sectionpage{Methodology}
 \subsection{Dataset}
-\subsubsection{Data Acquisition}
-While the raw AEMO market data provided a high-resolution temporal framework, it lacked the exogenous environmental and economic features crucial for predictive modelling. Consequently, these time-stamps were utilised as the primary keys to synthetically align and merge weather and economic datasets into a unified analytical feature set.
+\subsubsection{Data Acquisition and Cleaning}
+While raw AEMO market data was high-frequency, it lacked the exogenous environmental and economic features crucial for predictive modelling. Time-stamps were utilised as the primary keys to synthetically merge weather and economic datasets into a unified feature set. Cleaning involved linear interpolation of missing observations, removing high multi-collinear features and frequency alignments. Please refer to \appcref{app:eda} for a comprehensive \textbf{EDA}.
+
 
 \begin{table}[H]
     \centering
     \caption{Data Collation and Source Rationale}
     \label{tab:data_sources}
     \includegraphics[width=0.8\textwidth]{img/table1.png}
-    % \begin{tblr}{
-    %     colspec = {|l|X[1,l]|X[1,l]|},
-    %     rows = {2-Z}{rowsep=4pt, font=\fontsize{10}{11}\selectfont}, 
-    %     row{1} = {bg=SectionBGColor, fg=white, font=\bfseries}, 
-    %     column{1} = {font=\bfseries},
-    %     hlines,
-    % }
-    %     Data Source & Description & Methodology Rationale \\
-    %     AEMO (Market Data) & Half-hourly TOTAL\_DEMAND and RRP (Regional Reference Price) for the NSW1 region. & Established the target variable and allowed for the analysis of price-demand elasticity during peak events. \\
-    %     AEMO (Solar Data) & Estimated ROOFTOP\_SOLAR\_MW generation across NSW. & Critical for deriving GROSS\_DEMAND\_MW, accounting for "behind-the-meter" generation that masks true load. \\
-    %     Bureau of Meteorology & Half-hourly temperature, humidity, wind speed, and cloud cover data for Sydney. & Included to model the primary driver of demand: the non-linear relationship between ambient temperature and HVAC load. \\
-    %     Economic Indicators & Monthly Cash Rate (RBA), Household Spend (ABS), and Consumer Confidence indices (ANZ-Roy Morgan Australian). & Integrated to capture macro-trends and shifts in baseline energy consumption patterns over the 4-year study period. \\
-    % \end{tblr}
 \end{table}
 
-\subsubsection{Data Cleaning}
-Data cleaning was limited to linear interpolation of missing weather observations and the alignment of disparate 30-minute and monthly sampling frequencies into a single dataset. Features with high multicollinearity were removed or singled out.
-
-\subsubsection{Exploratory Data Analysis (EDA)}
-Given the conciseness of this report, please refer to \appcref{app:eda} for a comprehensive EDA.
-
 \subsubsection{Feature Scaling}
-To enable the models to better generalise the dataset and remove individuality in entries, the following feature scaling processes were completed:
+For better generalisation and to remove individuality in entries, the following feature scaling processes were completed:
 
 \begin{itemize}
-  \item \textbf{Feature Engineering:} Given the time-based nature of the dataset, the hour, minute, weekend and month were extracted from the \texttt{DATE\_TIME} feature.
+  \item \textbf{Feature Engineering:} The hour, minute, weekend and month were extracted from the \texttt{DATE\_TIME} feature.
   \item \textbf{Data Transformation:} One-Hot Encoding (OHE) was applied to categorical columns, standard scaling for numerical columns and binary 0/1 for boolean features. 
 \end{itemize}
 
 \subsection{Technologies Used}
-The project was executed in a Python 3.11 virtual environment, BeautifulSoup for web scraping, Pandas for data-frames, CatBoost and XGBoost libraries, scikit-learn, and Vegas-Altair for visualisation. Seeding was set to 42 for consistency and reproducibility. This resulted in 70,176 rows across 28 features. Moreover, the 60:20:20 chronological split provided 42105:14035:14036 rows for training, validation and testing respectively.
+Developed in a Python 3.11 virtual environment, BeautifulSoup for web scraping, Pandas for data-frames, CatBoost and XGBoost libraries, scikit-learn, and Vegas-Altair for visualisation. Seeding was set to 42 for consistency and reproducibility. Resulted in 70,176 rows across 28 features. Chronologically split in 60:20:20 provided 42105:14035:14036 rows for training, validation and testing respectively.
 
 \begin{figure}[H]
   \centering
@@ -495,28 +477,16 @@ The project was executed in a Python 3.11 virtual environment, BeautifulSoup for
 
 \subsection{Models}
 \subsubsection{Linear Regression (Ridge)}
-The linear regressor is a parametric model that fits a linear equation over observational data between a target feature and multiple independent predictors. It served as the baseline noting its computational efficiency and simplicity in capturing non-linear demand patterns. The Ridge variant was chosen to provide a stable baseline by focusing on L2 regularisation to mitigate multicollinearity among highly correlated weather features.
-
+The linear regressor is a parametric model that fits a linear equation over observational data. A Ridge variant served as the baseline for its computational efficiency, stability via L2 regularisation, and ability to mitigate multicollinearity among correlated weather features.
 
 \subsubsection{Gradient Boosting Decision Trees}
-Gradient Boosted Decision Trees (GBDT) are a non-parametric ensemble learning technique that sequentially builds decision trees, where each successive learner is optimised via gradient descent to minimise the residual loss of the previous ensemble.
+Gradient Boosted Decision Trees (GBDT) are a non-parametric ensemble models that sequentially build decision trees, using gradient descent to minimise the residual loss of the previous ensemble.
 
 \begin{table}[H]
     \centering
     \caption{Model Selection and Theoretical Rationale}
     \label{tab:models}
     \includegraphics[width=0.8\textwidth]{img/table2.png}
-    % \begin{tblr}{
-    %     colspec = {|l|X[1,l]|X[1,l]|},
-    %     rows = {2-Z}{rowsep=4pt, font=\fontsize{10}{11}\selectfont}, 
-    %     row{1} = {bg=SectionBGColor, fg=white, font=\bfseries}, 
-    %     column{1} = {font=\bfseries},
-    %     hlines,
-    % }
-    %     Model & Description & Methodology Rationale \\
-    %     XGBoost & Scalable GBDT library designed for high computational efficiency. & Selected to address non-linear relationships in the data through sequential tree-building and dual regularisation (L1 and L2) to control model complexity. \\
-    %     CatBoost & Advanced GBDT algorithm that utilises symmetric trees and ordered boosting to reduce prediction shift and handle categorical features. & Chosen for its superior ability to generalise on unseen data and its efficient handling of categorical features (such as 'Season' and 'Holiday') without extensive manual encoding. \\
-    % \end{tblr}
 \end{table}
 
 \subsection{Grid Search}
@@ -529,22 +499,11 @@ Hyperparameter optimisation is performed via Grid Search with \(k\)-fold Cross-V
   \caption{Chosen Performance Metrics}
   \label{tab:metrics_desc}
   \includegraphics[width=0.6\textwidth]{img/table3.png}
-  % \begin{tblr}{
-    %     colspec = {|l|l|l|},
-    %     rows = {2-Z}{rowsep=4pt, font=\fontsize{10}{11}\selectfont}, 
-    %     row{1} = {bg=SectionBGColor, fg=white, font=\bfseries}, 
-    %     column{1} = {font=\bfseries},
-    %     hlines,
-    % }
-    %     Metric & Description and Purpose & Formula \\
-    %     MAE & Average absolute error in MW, operationally interpretable. & $\frac{1}{n}\sum|y_i - \hat{y}_i|$ \\
-    %     MAPE & Scale-independent accuracy across demand magnitudes. & $\frac{1}{n}\sum\left|\frac{y_i - \hat{y}_i}{y_i}\right|\times 100$ \\
-    %     RMSE & Penalises large outliers in peak demand periods. & $\sqrt{\frac{1}{n}\sum(y_i - \hat{y}_i)^2}$ \\
-    %     Adjusted R² & Explained variance penalised for predictor count. & $1 - \frac{(1-R^2)(n-1)}{n-p-1}$ \\
-    % \end{tblr}
   \end{table}
   
 Model performance was evaluated using a hold-out test set to ensure generalisability. The following \autoref{tab:metrics_desc} above illustrates the chosen metrics.
+
+
 \sectionpage{Results}
 \subsection{Key Findings}
 CatBoost achieved the best test performance (MAPE 4.47\%, Adj. R² = 0.872, MAE = 400.25 MW), meeting the sub-5\% accuracy target. Surprisingly, Ridge Regression explained only 38.9\% of demand variation despite regularisation, confirming NSW electricity demand is fundamentally non-linear.
@@ -558,24 +517,6 @@ CatBoost achieved the best test performance (MAPE 4.47\%, Adj. R² = 0.872, MAE 
 \caption{Model Performance Comparison}
 \label{tab:model_performance}
 \includegraphics[width=0.8\textwidth]{img/table4.png}
-% \begin{tblr}{
-%     colspec = {|l|ccc|ccc|ccc|ccc|},
-%     rows = {3-Z}{rowsep=4pt, font=\fontsize{8}{11}\selectfont},
-%     row{1-2} = {bg=SectionBGColor, fg=white, font=\fontsize{8}{11}\selectfont\bfseries},
-%     column{1} = {font=\fontsize{8}{11}\selectfont\bfseries},
-%     cell{1}{2} = {c=3}{c},
-%     cell{1}{5} = {c=3}{c},
-%     cell{1}{8} = {c=3}{c},
-%     cell{1}{11} = {c=3}{c},
-%     hlines,
-%     vlines,
-% }
-%  & RMSE (MW) &  &  & MAE (MW) &  &  & MAPE (\%) &  &  & Adj R\textsuperscript{2} &  &  \\
-% Model & Train & Val & Test & Train & Val & Test & Train & Val & Test & Train & Val & Test \\
-% Linear Regression & 999.66 & 1202.67 & 1163.85 & 792.86 & 943.75 & 907.86 & 9.61 & 10.70 & 10.29 & 0.46 & 0.39 & 0.37 \\
-% XGBoost & 301.27 & 576.66 & 550.99 & 221.96 & 460.53 & 438.33 & 2.60 & 5.54 & 5.16 & 0.95 & 0.86 & 0.86 \\
-% CatBoost & 314.68 & 502.46 & 500.33 & 230.44 & 391.92 & 389.00 & 2.71 & 4.66 & 4.45 & 0.95 & 0.89 & 0.88 \\
-% \end{tblr}
 \end{table}
 
 Three models were compared on held-out test data (\autoref{tab:model_performance}). Ridge Regression failed to capture non-linear patterns (MAPE 10.31\%, R² = 0.389). XGBoost improved but showed overfitting (MAPE 5.83\%, R² = 0.836). CatBoost generalised best across all metrics, meeting the sub-5\% threshold.
@@ -583,14 +524,14 @@ Three models were compared on held-out test data (\autoref{tab:model_performance
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{img/qqplots.png}
-  \caption{QQ-plots for CatBoost (top), Linear Regression (middle), and XGBoost (bottom) across train, validation, and test splits. All models show reasonable normality in the central quantile range with heavier tails at extremes, consistent with demand spikes during extreme weather events.}
+  \caption{QQ-plots. All models show reasonable normality in the central quantile range with heavier tails at extremes, consistent with demand spikes during extreme weather events.}
   \label{fig:qq_plots}
 \end{figure}
 
 Regression assumptions were verified via QQ-plots (shown in \autoref{fig:qq_plots}).
 
 \subsubsection{Model Interpretation and Feature Importance}
-Feature importance comparisons (\autoref{fig:feature_comparison}) explain the performance gap. While the Ridge baseline relied almost exclusively on temperature, CatBoost and XGBoost prioritised cyclical temporal encodings (sin/cos\_hour) and environmental drivers. This confirms that boosted ensembles learned midday solar patterns via temporal proxies, successfully mitigating the removal of the multi-collinear rooftop solar feature.
+Feature importance comparisons (\autoref{fig:feature_comparison}) indicate that while the Ridge baseline relied on temperature, CatBoost and XGBoost prioritised temporal and environmental drivers. This confirms the boosted models learned solar patterns through proxies, successfully compensating for the removed rooftop solar feature.
 
 \begin{figure}[H]
      \centering
@@ -624,11 +565,13 @@ Conversely, the marginal impact of the \textbf{Cash Rate} suggest that while eco
 \subsection{Conclusion}
 CatBoost forecasts NSW grid demand to within 4.47\% average error; useful for dispatch planning, but not a replacement for operator judgement during extreme or unusual conditions.
 \subsection{Discussion}
-The project tested whether machine learning models trained on historical New South Wales half hourly data could effectively support grid dispatch. CatBoost successfully met the sub 5\% performance target, achieving a MAPE of 4.47\% and an R² of 0.872, with a Mean Absolute Error of approximately 400 MW. In contrast, XGBoost exhibited overfitting, while Ridge Regression performed poorly with a 10.31\% MAPE and an R² of 0.389. This reinforces the initial exploratory data analysis findings: NSW energy demand is inherently non linear, making it unsuitable for linear modeling.
+This project evaluated machine learning for grid dispatch using historical NSW half-hourly data. \textbf{CatBoost} met the sub-5\% target, achieving a \textbf{4.47\% MAPE} and \textbf{0.872 $R^2$} ($\approx$400~MW MAE). Conversely, \textbf{XGBoost} overfit, while \textbf{Ridge Regression} failed (10.31\% MAPE), confirming NSW demand is non-linear. At average 2024 prices (\$150/MWh), a 400~MW error represents a significant financial risk.
 
-Temperature and hour of day were the primary drivers for both tree based models. These features align with the U shaped demand curve and the duck curve pattern identified during the EDA phase. As NSW rooftop solar capacity reaches 7.5 GW and continues to expand, midday demand suppression and the subsequent sharp evening ramps will become increasingly difficult to forecast. Given 2024 average wholesale prices of 150 dollars per MWh, a 400 MW forecasting error represents a significant financial risk to market participants.
 \subsection{Project Limitations and Caveats}
 The model is fixed to a 2022-2026 training window with no self-update mechanism. Accuracy will drift as the grid changes. Urban areas also dominate the dataset, so regional and remote NSW performance is likely worse than the headline numbers suggest.
+
+Remote and Aboriginal communities are underrepresented in AEMO grid data. A model trained mainly on urban demand risks reinforcing unequal energy distribution if applied broadly. Any deployment should respect Indigenous Data Sovereignty principles and involve community engagement before rollout.
+
 \subsection{Stakeholder Analysis and Project Outcomes}
 The deliverable is a CatBoost pipeline returning 30-minute demand forecasts from weather, calendar, and economic inputs. AEMO operators benefit most, in that the better forecasts mean less reliance on expensive last-minute generation. Next steps: live AEMO data integration, retraining cadence, and testing sequential models like LSTM for extreme weather periods.
 

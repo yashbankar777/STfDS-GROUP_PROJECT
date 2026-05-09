@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.5.9)  9 MAY 2026 22:56
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.5.9)  10 MAY 2026 00:14
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -2652,7 +2652,7 @@ File: img/uts_logo_white.png Graphic file (type bmp)
 File: img/multicollinearity_chart.pdf Graphic file (type pdf)
 <use img/multicollinearity_chart.pdf>
 
-Overfull \hbox (0.88809pt too wide) in paragraph at lines 654--654
+Overfull \hbox (0.88809pt too wide) in paragraph at lines 597--597
 |[]\TU/Inter(0)/b/n/12 Does temperature have a non-linear relationship with NSW
  grid demand across 2°C bins?|  
  []
@@ -2695,7 +2695,7 @@ y
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 684.
+nput line 627.
  (scripts/preparation.py
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2837,7 +2837,7 @@ L3 programming layer <2026-03-20>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F09FC5A0DD8B06399D7EF514DB4C6585;6251.
+(rerunfilecheck)             Checksum: F3E020F29583554C3F9AFE2BB0EC6AC6;5948.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
@@ -2845,7 +2845,7 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  76600 strings out of 402807
  1857379 string characters out of 5444515
- 3844237 words of memory out of 5000000
+ 3844124 words of memory out of 5000000
  104625 multiletter control sequences out of 15000+600000
  634203 words of font info for 89 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
