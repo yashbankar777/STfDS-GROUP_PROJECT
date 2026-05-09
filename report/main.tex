@@ -246,47 +246,6 @@
 
 \setlength{\bibitemsep}{0.8\baselineskip}
 
-% Bubbles
-\pgfkeys{
-  /businessbubble/.is family, /businessbubble,
-  default/.style = {
-    color = SectionBGColor,
-    opacity = 0.5,
-    x = 0,
-    y = 0,
-    size = 4cm,
-    textcolor = white,
-  },
-  color/.estore in     = \bcolor,
-  opacity/.estore in   = \bopacity,
-  x/.estore in         = \bx,
-  y/.estore in         = \by,
-  size/.estore in      = \bsize,
-  textcolor/.estore in = \btextcol,
-}
-
-\newcommand{\bubble}[2][]{%
-  \pgfkeys{/businessbubble, default, #1}
-  % Compute text width = 0.65 × circle diameter (fits snugly inside the circle)
-  \pgfmathsetmacro{\btextwidth}{\bsize * 0.72}
-  \begin{tikzpicture}[remember picture, overlay]
-    \node[
-      circle,
-      fill=\bcolor,
-      fill opacity=\bopacity,
-      text opacity=1,
-      minimum size=\bsize,
-      text width=\btextwidth pt,   % auto-derived, not hardcoded
-      text=\btextcol,
-      font=\rmfamily\fontsize{10}{10}\selectfont,
-      align=center,
-      anchor=center,
-      inner sep=0pt,
-      execute at begin node={\centering\hyphenpenalty=10000\exhyphenpenalty=10000},
-    ] at ([shift={(\bx cm, \by cm)}]current page.center) {#2};
-  \end{tikzpicture}%
-}
-
 % Define colors
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -404,17 +363,17 @@
 \vspace*{1cm}
 Electricity demand in NSW varies with weather, time, and season. During peak periods, wholesale prices can reach \$17,500/MWh, making accurate forecasts important for grid stability and cost management.
 
+Exploratory analysis showed demand is lowest in mild conditions, rises during extreme hot or cold weather, and differs between weekdays and weekends. Rooftop solar reduces midday demand but causes a sharp evening increase.
+
 Analysing NSW demand (2022-2026), this study developed a 30-minute interval forecasting pipeline. CatBoost emerged as the optimal model, effectively capturing non-linear climatic and temporal drivers to support grid stability and market pricing strategies.
 
 
 \end{adjustwidth}}
 
-\definecolor{bubble1}{HTML}{119dff}
-\definecolor{bubble2}{HTML}{5b4fff}
-
-\bubble[color=bubble1, opacity=1, x=-3.8, y=-5.6, size=8cm]{CatBoost achieved the best test performance: MAPE 4.45\%, Adjusted R² 0.884, MAE 389 MW. \\[0.3cm] XGBoost followed closely at 5.16\% and 0.860. Ridge Regression (10.3\%, 0.375) was insufficient for grid operations.}
-
-\bubble[color=bubble2, opacity=1, x=3.8, y=-8, size=6.4cm]{Temperature and hour of day ranked as top predictors in both ensemble models, matching the U-shaped demand curve and intraday peaks from EDA.}
+\begin{center}
+  \vspace*{2cm}
+  \includegraphics[width=0.67\textwidth]{img/bubbles_export.png}
+\end{center}
 
 \clearpage
 

@@ -1,0 +1,82 @@
+% !TeX TXS-program:compile = txs:///xelatex/[--shell-escape]
+\documentclass[tikz, border=10pt]{standalone}
+\usepackage{pgfkeys}
+
+\usepackage{fontspec}
+\usepackage{textcomp, gensymb}
+\usepackage[australian]{babel}
+\usepackage{alphabeta}
+\usepackage{microtype}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage[export]{adjustbox}
+\usepackage{datetime}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{relsize}
+\usepackage{circuitikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{cuted}
+\usepackage{titletoc}
+\usepackage[showboxes, absolute]{textpos}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{tabularray}
+\usepackage[thinlines]{easytable}
+\usepackage{amsmath}
+\usepackage[official]{eurosym}
+\usepackage{enumitem}
+
+\usepackage[style=apa, backend=biber, hyperref=true, natbib=true, uniquename=full, maxcitenames=999, mincitenames=999, sortcites=true, sorting=apa]{biblatex}
+\addbibresource{refs.bib}
+
+\setmainfont{Inter}[
+    Path = ./font/,
+    UprightFont = {Inter_28pt-Regular.ttf},
+    BoldFont = {Inter_28pt-Bold.ttf},
+    ItalicFont = {Inter_28pt-Italic.ttf},
+    BoldItalicFont = {Inter_28pt-BoldItalic.ttf}
+]
+
+% Define your colors
+\definecolor{bubble1}{HTML}{119dff}
+\definecolor{bubble2}{HTML}{5b4fff}
+
+% Your bubble command logic (Modified to remove 'overlay' for export)
+\pgfkeys{
+  /businessbubble/.is family, /businessbubble,
+  default/.style = { color = blue, opacity = 1, x = 0, y = 0, size = 4cm, textcolor = white},
+  color/.estore in = \bcolor,
+  opacity/.estore in = \bopacity,
+  x/.estore in = \bx, y/.estore in = \by,
+  size/.estore in = \bsize, textcolor/.estore in = \btextcol,
+}
+
+\newcommand{\bubbleexport}[2][]{%
+  \pgfkeys{/businessbubble, default, #1}
+  \pgfmathsetmacro{\btextwidth}{\bsize * 0.72}
+  \node[
+    circle, fill=\bcolor, fill opacity=\bopacity, text opacity=1,
+    minimum size=\bsize, text width=\btextwidth pt, text=\btextcol,
+    font=\rmfamily\fontsize{10}{12}\selectfont, align=center, inner sep=10pt
+  ] at (\bx, \by) {#2};
+}
+
+\begin{document}
+\begin{tikzpicture}
+    % Bubble 1
+    \bubbleexport[color=bubble1, x=0, y=0, size=8cm]{CatBoost achieved the best test performance: MAPE 4.45\%, Adjusted R² 0.884, MAE 389 MW. \\[0.3cm] XGBoost followed closely at 5.16\% and 0.860. Ridge Regression (10.3\%, 0.375) was insufficient for grid operations.}
+    
+    % Bubble 2 (Adjusted coordinates for standalone)
+    \bubbleexport[color=bubble2, x=6, y=-2, size=6.4cm]{Temperature and hour of day ranked as top predictors in both ensemble models, matching the U-shaped demand curve and intraday peaks from EDA.}
+\end{tikzpicture}
+\end{document}
