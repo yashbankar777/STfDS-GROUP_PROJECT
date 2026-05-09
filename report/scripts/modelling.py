@@ -390,7 +390,7 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-# Assuming X_train is your feature matrix
+# Assuming X_train is the feature matrix
 n_feat = X_train.shape[1]
 
 # Data aggregation - Added n_feat to each call
