@@ -9,8 +9,6 @@
 \contentsline {subsubsection}{\numberline {2.1.2}Feature Scaling}{4}{subsubsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.2}Technologies Used}{4}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Models}{5}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Linear Regression (Ridge)}{5}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Gradient Boosting Decision Trees}{5}{subsubsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.4}Grid Search}{5}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Metrics}{5}{subsection.2.5}%
 \contentsline {section}{\numberline {3}Results}{6}{section*.7}%
@@ -20,9 +18,8 @@
 \contentsline {subsubsection}{\numberline {3.2.2}Model Interpretation and Feature Importance}{8}{subsubsection.3.2.2}%
 \contentsline {section}{\numberline {4}Conclusion}{9}{section*.11}%
 \contentsline {subsection}{\numberline {4.1}Conclusion}{10}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Discussion}{10}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Project Limitations and Caveats}{10}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Stakeholder Analysis and Project Outcomes}{10}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.2}Project Limitations and Caveats}{10}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Stakeholder Analysis and Project Outcomes}{10}{subsection.4.3}%
 \contentsline {section}{References}{11}{section*.12}%
 \contentsline {section}{Appendices}{13}{section*.13}%
 \contentsline {section}{\numberline {A}Exploratory Data Analysis}{14}{section.1.A}%

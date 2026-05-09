@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.5.9)  10 MAY 2026 00:23
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.5.9)  10 MAY 2026 07:52
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -2482,17 +2482,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[1] (main.toc
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[2
-
-])
+[1] (main.toc)
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
@@ -2504,7 +2494,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[3] (main.lot)
+[2
+
+] (main.lot)
 \tf@lot=\write7
 \openout7 = `main.lot'.
 
@@ -2520,7 +2512,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[4
+[3
 
 ]
 File: img/uts_logo_white.png Graphic file (type bmp)
@@ -2546,12 +2538,10 @@ File: img/uts_logo_white.png Graphic file (type bmp)
 ]
 File: img/table1.png Graphic file (type bmp)
 <img/table1.png>
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmtt' (encoding: TU).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
 File: img/dist_chart.png Graphic file (type bmp)
 <img/dist_chart.png>
+File: img/table2.png Graphic file (type bmp)
+<img/table2.png>
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2563,8 +2553,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [4
 
 ]
-File: img/table2.png Graphic file (type bmp)
-<img/table2.png>
 File: img/table3.png Graphic file (type bmp)
 <img/table3.png>
 
@@ -2585,6 +2573,12 @@ File: img/table4.png Graphic file (type bmp)
 <img/table4.png>
 File: img/qqplots.png Graphic file (type bmp)
 <img/qqplots.png>
+File: img/lin_imp_chart.png Graphic file (type bmp)
+<img/lin_imp_chart.png>
+File: img/xgb_imp_chart.png Graphic file (type bmp)
+<img/xgb_imp_chart.png>
+File: img/cat_imp_chart.png Graphic file (type bmp)
+<img/cat_imp_chart.png>
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2596,13 +2590,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [7
 
 ]
-File: img/lin_imp_chart.png Graphic file (type bmp)
-<img/lin_imp_chart.png>
-File: img/xgb_imp_chart.png Graphic file (type bmp)
-<img/xgb_imp_chart.png>
-File: img/cat_imp_chart.png Graphic file (type bmp)
-<img/cat_imp_chart.png>
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -2652,7 +2639,7 @@ File: img/uts_logo_white.png Graphic file (type bmp)
 File: img/multicollinearity_chart.pdf Graphic file (type pdf)
 <use img/multicollinearity_chart.pdf>
 
-Overfull \hbox (0.88809pt too wide) in paragraph at lines 597--597
+Overfull \hbox (0.88809pt too wide) in paragraph at lines 603--603
 |[]\TU/Inter(0)/b/n/12 Does temperature have a non-linear relationship with NSW
  grid demand across 2°C bins?|  
  []
@@ -2695,7 +2682,11 @@ y
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 627.
+nput line 633.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
  (scripts/preparation.py
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2837,18 +2828,18 @@ L3 programming layer <2026-03-20>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F3E020F29583554C3F9AFE2BB0EC6AC6;5948.
+(rerunfilecheck)             Checksum: 934216C7ED9BB54ACB2796FEE566881D;5396.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 76600 strings out of 402807
- 1857379 string characters out of 5444515
- 3844124 words of memory out of 5000000
- 104625 multiletter control sequences out of 15000+600000
+ 76596 strings out of 402807
+ 1857282 string characters out of 5444515
+ 3844125 words of memory out of 5000000
+ 104621 multiletter control sequences out of 15000+600000
  634203 words of font info for 89 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,12n,131p,1276b,5344s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (37 pages).
+Output written on main.pdf (36 pages).
