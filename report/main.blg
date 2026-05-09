@@ -1,19 +1,19 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'main.blg'
-[43] biber-MSWIN64:342> INFO - === 
+[42] biber-MSWIN64:342> INFO - === 
 [55] Biber.pm:421> INFO - Reading 'main.bcf'
 [132] Biber.pm:1002> INFO - Found 6 citekeys in bib section 0
-[146] Biber.pm:4487> INFO - Processing section 0
+[145] Biber.pm:4487> INFO - Processing section 0
 [154] Biber.pm:4678> INFO - Looking for bibtex file 'refs.bib' for section 0
-[157] bibtex.pm:1713> INFO - LaTeX decoding ...
+[156] bibtex.pm:1713> INFO - LaTeX decoding ...
 [166] bibtex.pm:1519> INFO - Found BibTeX data source 'refs.bib'
-[214] UCollate.pm:68> INFO - Overriding locale 'en-AU' defaults 'variable = shifted' with 'variable = non-ignorable'
-[214] UCollate.pm:68> INFO - Overriding locale 'en-AU' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[214] Biber.pm:4307> INFO - Sorting list 'apa/apasortcite//global/global/global' of type 'entry' with template 'apa' and locale 'en-AU'
-[214] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-AU'
-[224] UCollate.pm:68> INFO - Overriding locale 'en-AU' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[224] UCollate.pm:68> INFO - Overriding locale 'en-AU' defaults 'variable = shifted' with 'variable = non-ignorable'
-[224] Biber.pm:4307> INFO - Sorting list 'apa/global//global/global/global' of type 'entry' with template 'apa' and locale 'en-AU'
-[224] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-AU'
-[231] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[213] UCollate.pm:68> INFO - Overriding locale 'en-AU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[213] UCollate.pm:68> INFO - Overriding locale 'en-AU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[213] Biber.pm:4307> INFO - Sorting list 'apa/apasortcite//global/global/global' of type 'entry' with template 'apa' and locale 'en-AU'
+[213] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-AU'
+[223] UCollate.pm:68> INFO - Overriding locale 'en-AU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[223] UCollate.pm:68> INFO - Overriding locale 'en-AU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[223] Biber.pm:4307> INFO - Sorting list 'apa/global//global/global/global' of type 'entry' with template 'apa' and locale 'en-AU'
+[223] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-AU'
+[230] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
 [237] bbl.pm:779> INFO - Output to main.bbl
