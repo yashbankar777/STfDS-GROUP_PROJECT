@@ -1,8 +1,9 @@
 \babel@toc {australian}{}\relax 
 \contentsline {figure}{\numberline {1}{\ignorespaces Target feature distribution}}{5}{figure.caption.4}%
-\contentsline {figure}{\numberline {2}{\ignorespaces QQ Plots}}{7}{figure.caption.8}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Multicollinearity Matrix on Raw Data}}{14}{figure.caption.12}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Mean NSW grid electricity demand across temperature bins.}}{15}{figure.caption.13}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Mean NSW intraday electricity demand by day type.}}{15}{figure.caption.14}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Impact of rooftop solar on NSW grid demand (the "duck curve").}}{16}{figure.caption.15}%
+\contentsline {figure}{\numberline {2}{\ignorespaces QQ-plots for CatBoost (top), Linear Regression (middle), and XGBoost (bottom) across train, validation, and test splits. All models show reasonable normality in the central quantile range with heavier tails at extremes, consistent with demand spikes during extreme weather events.}}{7}{figure.caption.9}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Feature Importance Comparison across Models}}{8}{figure.caption.10}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Multicollinearity Matrix on Raw Data}}{14}{figure.caption.14}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Mean NSW grid electricity demand across temperature bins.}}{15}{figure.caption.15}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Mean NSW intraday electricity demand by day type.}}{15}{figure.caption.16}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Impact of rooftop solar on NSW grid demand (the "duck curve").}}{16}{figure.caption.17}%
 \contentsfinish 

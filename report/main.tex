@@ -56,7 +56,7 @@
 \usepackage{xurl}
 \usepackage{eso-pic}
 \usepackage{titlesec}
-\usepackage[page]{appendix}
+\usepackage[]{appendix}
 \usepackage{fancyhdr}
 \usepackage{changepage}
 
@@ -287,6 +287,37 @@
   \end{tikzpicture}%
 }
 
+% Define colors
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Set the style
+\lstset{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    xleftmargin=2em,
+    framexleftmargin=1.5em,
+}
+
+\lstset{
+  basicstyle=\ttfamily\small,  % Use monospaced font
+  breaklines=true,             % Enable word wrap
+  breakatwhitespace=false,     % Wrap even if there is no whitespace
+  numbers=left,                % Position of line numbers
+  numberstyle=\tiny\color{gray}, % Style for line numbers
+  stepnumber=1,                % Number every line
+  numbersep=10pt,              % Distance between numbers and code
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, % Show arrow on wrapped lines
+  frame=single,                % Add a box around the code
+  showstringspaces=false       % Don't show underscores for spaces
+}
 
 \begin{document}
 \begin{titlepage}
@@ -521,20 +552,85 @@ CatBoost achieved the best test performance (MAPE 4.47\%, Adj. R² = 0.872, MAE 
 \subsection{In-depth Results}
 
 \subsubsection{Can an ensemble regression model predict 30-minute NSW grid demand with MAPE below 5\%?}
-Three models were compared on held-out test data (Table 1). Ridge Regression failed to capture non-linear patterns (MAPE 10.31\%, R² = 0.389). XGBoost improved but showed overfitting (MAPE 5.83\%, R² = 0.836). CatBoost generalised best across all metrics, meeting the sub-5\% threshold. Regression assumptions were verified via QQ-plots (shown in \autoref{fig:qq_plots}).
+
+\begin{table}[h]
+\centering
+\caption{Model Performance Comparison}
+\label{tab:model_performance}
+\includegraphics[width=0.8\textwidth]{img/table4.png}
+% \begin{tblr}{
+%     colspec = {|l|ccc|ccc|ccc|ccc|},
+%     rows = {3-Z}{rowsep=4pt, font=\fontsize{8}{11}\selectfont},
+%     row{1-2} = {bg=SectionBGColor, fg=white, font=\fontsize{8}{11}\selectfont\bfseries},
+%     column{1} = {font=\fontsize{8}{11}\selectfont\bfseries},
+%     cell{1}{2} = {c=3}{c},
+%     cell{1}{5} = {c=3}{c},
+%     cell{1}{8} = {c=3}{c},
+%     cell{1}{11} = {c=3}{c},
+%     hlines,
+%     vlines,
+% }
+%  & RMSE (MW) &  &  & MAE (MW) &  &  & MAPE (\%) &  &  & Adj R\textsuperscript{2} &  &  \\
+% Model & Train & Val & Test & Train & Val & Test & Train & Val & Test & Train & Val & Test \\
+% Linear Regression & 999.66 & 1202.67 & 1163.85 & 792.86 & 943.75 & 907.86 & 9.61 & 10.70 & 10.29 & 0.46 & 0.39 & 0.37 \\
+% XGBoost & 301.27 & 576.66 & 550.99 & 221.96 & 460.53 & 438.33 & 2.60 & 5.54 & 5.16 & 0.95 & 0.86 & 0.86 \\
+% CatBoost & 314.68 & 502.46 & 500.33 & 230.44 & 391.92 & 389.00 & 2.71 & 4.66 & 4.45 & 0.95 & 0.89 & 0.88 \\
+% \end{tblr}
+\end{table}
+
+Three models were compared on held-out test data (\autoref{tab:model_performance}). Ridge Regression failed to capture non-linear patterns (MAPE 10.31\%, R² = 0.389). XGBoost improved but showed overfitting (MAPE 5.83\%, R² = 0.836). CatBoost generalised best across all metrics, meeting the sub-5\% threshold.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{img/qqplots.png}
-  \caption{QQ Plots}
+  \includegraphics[width=0.7\textwidth]{img/qqplots.png}
+  \caption{QQ-plots for CatBoost (top), Linear Regression (middle), and XGBoost (bottom) across train, validation, and test splits. All models show reasonable normality in the central quantile range with heavier tails at extremes, consistent with demand spikes during extreme weather events.}
   \label{fig:qq_plots}
 \end{figure}
 
+Regression assumptions were verified via QQ-plots (shown in \autoref{fig:qq_plots}).
+
+\subsubsection{Model Interpretation and Feature Importance}
+Feature importance comparisons (\autoref{fig:feature_comparison}) explain the performance gap. While the Ridge baseline relied almost exclusively on temperature, CatBoost and XGBoost prioritised cyclical temporal encodings (sin/cos\_hour) and environmental drivers. This confirms that boosted ensembles learned midday solar patterns via temporal proxies, successfully mitigating the removal of the multi-collinear rooftop solar feature.
+
+\begin{figure}[H]
+     \centering
+     \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/lin_imp_chart.png}
+         \caption{Ridge (Baseline)}
+         \label{fig:imp_ridge}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/xgb_imp_chart.png}
+         \caption{XGBoost}
+         \label{fig:imp_xgb}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/cat_imp_chart.png}
+         \caption{CatBoost}
+         \label{fig:imp_cat}
+     \end{subfigure}
+        \caption{Feature Importance Comparison across Models}
+        \label{fig:feature_comparison}
+\end{figure}
+
+Conversely, the marginal impact of the \textbf{Cash Rate} suggest that while economic indicators provide macro-context, they are less critical for short-term 30-minute interval forecasting than environmental and temporal features.
+
 \sectionpage{Conclusion}
 \subsection{Conclusion}
+CatBoost forecasts NSW grid demand to within 4.47\% average error; useful for dispatch planning, but not a replacement for operator judgement during extreme or unusual conditions.
 \subsection{Discussion}
+The project tested whether machine learning models trained on historical New South Wales half hourly data could effectively support grid dispatch. CatBoost successfully met the sub 5\% performance target, achieving a MAPE of 4.47\% and an R² of 0.872, with a Mean Absolute Error of approximately 400 MW. In contrast, XGBoost exhibited overfitting, while Ridge Regression performed poorly with a 10.31\% MAPE and an R² of 0.389. This reinforces the initial exploratory data analysis findings: NSW energy demand is inherently non linear, making it unsuitable for linear modeling.
+
+Temperature and hour of day were the primary drivers for both tree based models. These features align with the U shaped demand curve and the duck curve pattern identified during the EDA phase. As NSW rooftop solar capacity reaches 7.5 GW and continues to expand, midday demand suppression and the subsequent sharp evening ramps will become increasingly difficult to forecast. Given 2024 average wholesale prices of 150 dollars per MWh, a 400 MW forecasting error represents a significant financial risk to market participants.
 \subsection{Project Limitations and Caveats}
+The model is fixed to a 2022-2026 training window with no self-update mechanism. Accuracy will drift as the grid changes. Urban areas also dominate the dataset, so regional and remote NSW performance is likely worse than the headline numbers suggest.
 \subsection{Stakeholder Analysis and Project Outcomes}
+The deliverable is a CatBoost pipeline returning 30-minute demand forecasts from weather, calendar, and economic inputs. AEMO operators benefit most, in that the better forecasts mean less reliance on expensive last-minute generation. Next steps: live AEMO data integration, retraining cadence, and testing sequential models like LSTM for extreme weather periods.
 
 \clearpage
 %TC:ignore
@@ -561,32 +657,34 @@ A clear U-shaped relationship was observed between temperature and mean grid dem
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{img/rq1_temp_vs_demand.png}
-  \caption[Mean NSW grid electricity demand across temperature bins.]{Mean NSW grid electricity demand (MW) across 2°C temperature bins (5°C-43°C). A U-shaped pattern is evident, with lowest demand near the comfort zone (~21°C, ~7,000 MW), rising at cold extremes due to heating load and hot extremes due to air-conditioning. Shaded band represents ±1 SD.}
+  \caption[Mean NSW grid electricity demand across temperature bins.]{Mean NSW grid electricity demand (MW) across 2°C temperature bins (5°C-43°C). A U-shaped pattern is evident, with lowest demand near the comfort zone ($\sim$21°C, $\sim$7,000 MW), rising at cold extremes due to heating load and hot extremes due to air-conditioning. Shaded band represents ±1 SD.}
   \label{fig:rq1}
 \end{figure}
 
 
 \subsection{Do mean hourly demand profiles differ between weekdays, weekends, and public holidays?}
-Weekday demand showed a morning commercial peak at 8 AM (~8,200 MW) and an evening residential peak at 7 PM (~9,500 MW). Weekend and holiday profiles were 1,000-1,500 MW lower with no morning peak (Figure 2). An unexpected finding was a pronounced midday dip across all day types driven by rooftop solar, forming the classic “duck curve” pattern (\autoref{fig:rq2}).
+Weekday demand showed a morning commercial peak at 8 AM ($\sim$8,200 MW) and an evening residential peak at 7 PM ($\sim$9,500 MW). Weekend and holiday profiles were 1,000-1,500 MW lower with no morning peak (\autoref{fig:rq2}). An unexpected finding was a pronounced midday dip across all day types driven by rooftop solar, forming the classic “duck curve” pattern (\autoref{fig:rq3}).
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{img/rq2_intraday_demand.png}
-  \caption[Mean NSW intraday electricity demand by day type.]{Mean NSW grid electricity demand (MW) by hour of day for weekdays (solid blue), weekends (dashed orange), and public holidays (dotted red). Weekdays show a morning peak at 8 AM (\~8,200 MW) and an evening peak at 7 PM (\~9,500 MW). Weekend and holiday profiles are 1,000–1,500 MW lower with no commercial morning peak.}
+  \caption[Mean NSW intraday electricity demand by day type.]{Mean NSW grid electricity demand (MW) by hour of day for weekdays (solid blue), weekends (dashed orange), and public holidays (dotted red). Weekdays show a morning peak at 8 AM ($\sim$8,200 MW) and an evening peak at 7 PM ($\sim$9,500 MW). Weekend and holiday profiles are 1,000-1,500 MW lower with no commercial morning peak.}
   \label{fig:rq2}
 \end{figure}
 
-
-
- (\autoref{fig:rq3})
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{img/rq3_solar_vs_demand.png}
-  \caption[Impact of rooftop solar on NSW grid demand (the "duck curve").]{Mean hourly rooftop solar generation (MW, right axis, orange) overlaid on gross pre-solar demand (solid blue) and net post-solar grid demand (dashed teal). Solar peaks near midday (~3,000 MW), suppressing grid demand and creating the sharp evening ramp as generation drops — the “duck curve” pattern.}
+  \caption[Impact of rooftop solar on NSW grid demand (the "duck curve").]{Mean hourly rooftop solar generation (MW, right axis, orange) overlaid on gross pre-solar demand (solid blue) and net post-solar grid demand (dashed teal). Solar peaks near midday ($\sim$3,000 MW), suppressing grid demand and creating the sharp evening ramp as generation drops — the “duck curve” pattern.}
   \label{fig:rq3}
 \end{figure}
 \clearpage
 \section{Modelling Code}
+\subsection{Data Preparation}
+\lstinputlisting[language=Python]{scripts/preparation.py}
+
+\subsection{Modelling}
+\lstinputlisting[language=Python]{scripts/modelling.py}
 %TC:endignore
 \end{appendices}
 \end{document}
