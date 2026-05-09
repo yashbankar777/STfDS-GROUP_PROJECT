@@ -15,18 +15,20 @@
 \contentsline {subsubsection}{\numberline {2.3.2}Gradient Boosting Decision Trees}{5}{subsubsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.4}Grid Search}{5}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Metrics}{5}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Results}{6}{section*.6}%
-\contentsline {section}{\numberline {4}Conclusion}{8}{section*.7}%
+\contentsline {section}{\numberline {3}Results}{6}{section*.7}%
+\contentsline {subsection}{\numberline {3.1}Key Findings}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}In-depth Results}{7}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Can an ensemble regression model predict 30-minute NSW grid demand with MAPE below 5\%?}{7}{subsubsection.3.2.1}%
+\contentsline {section}{\numberline {4}Conclusion}{8}{section*.9}%
 \contentsline {subsection}{\numberline {4.1}Conclusion}{9}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Discussion}{9}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Project Limitations and Caveats}{9}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Stakeholder Analysis and Project Outcomes}{9}{subsection.4.4}%
-\contentsline {section}{References}{10}{section*.8}%
-\contentsline {section}{Appendices}{13}{section*.9}%
+\contentsline {section}{References}{10}{section*.10}%
+\contentsline {section}{Appendices}{13}{section*.11}%
 \contentsline {section}{\numberline {A}Exploratory Data Analysis}{14}{section.1.A}%
 \contentsline {subsection}{\numberline {A.1}General Exploration}{14}{subsection.1.A.1}%
 \contentsline {subsection}{\numberline {A.2}Does temperature have a non-linear relationship with NSW grid demand across 2°C bins?}{14}{subsection.1.A.2}%
 \contentsline {subsection}{\numberline {A.3}Do mean hourly demand profiles differ between weekdays, weekends, and public holidays?}{15}{subsection.1.A.3}%
-\contentsline {subsection}{\numberline {A.4}Can an ensemble regression model predict 30-minute NSW grid demand with MAPE below 5\%?}{15}{subsection.1.A.4}%
 \contentsline {section}{\numberline {B}Modelling Code}{17}{section.1.B}%
 \contentsfinish 
