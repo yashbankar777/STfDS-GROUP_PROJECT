@@ -8,7 +8,7 @@
 \usepackage{microtype}
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{colortbl}
-\usepackage[top=12mm, bottom=10mm, left=12mm, right=12mm, headsep=4mm, footskip=4mm]{geometry}
+\usepackage[top=12mm, bottom=10mm, left=12mm, right=12mm, headsep=4mm, footskip=8mm]{geometry}
 \usepackage{array}
 \usepackage[export]{adjustbox}
 \usepackage{datetime}
@@ -56,9 +56,26 @@
 \usepackage{xurl}
 \usepackage{eso-pic}
 \usepackage{titlesec}
-\usepackage[toc,page]{appendix}
+\usepackage[page]{appendix}
 \usepackage{fancyhdr}
 \usepackage{changepage}
+
+\crefname{appsec}{appendix section}{appendix sections}
+\Crefname{appsec}{Appendix Section}{Appendix Sections}
+
+\crefname{appendix}{appendix section}{appendix sections}
+\Crefname{appendix}{Appendix Section}{Appendix Sections}
+
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{appendices}{%
+  \clearpage
+  \appendix
+  \crefalias{section}{appendix}%
+  \crefalias{subsection}{appendix}%
+  \crefalias{subsubsection}{appendix}%
+  \crefalias{subsubsubsection}{appendix}%
+}
+
 
 \setmainfont{Inter}[
     Path = ./font/,
@@ -106,7 +123,7 @@
 \makeatother
 
 \captionsetup{font=small, labelfont=bf, labelsep=period, justification=centering, singlelinecheck=false}
-\captionsetup[sub]{font=small, labelfont=bf} 
+\captionsetup[sub]{font=small, labelfont=bf}
 
 \setlist{topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=6pt}
 
@@ -194,7 +211,7 @@
 
 \let\citep\parencite
 
-
+\newcommand{\appcref}[1]{\hyperref[#1]{Appendix Section~\ref*{#1}}}
 
 
 \DeclareSortingTemplate{apaextradate}{
@@ -402,6 +419,46 @@ The aim of this project was to determine whether machine learning models trained
 To answer these questions, we sourced and merged half-hourly AEMO data with weather, rooftop solar, and economic indicators, then ran exploratory analysis to identify key demand drivers. We built and compared Ridge Regression, XGBoost, and CatBoost models on a 60:20:20 chronological split, evaluating each on RMSE, MAE, MAPE, and Adjusted R². 
 
 \sectionpage{Methodology}
+\subsection{Dataset}
+\subsubsection{Data Acquisition}
+While the raw AEMO market data provided a high-resolution temporal framework, it lacked the exogenous environmental and economic features crucial for predictive modelling. Consequently, these time-stamps were utilised as the primary keys to synthetically align and merge weather and economic datasets into a unified analytical feature set.
+
+\begin{table}[H]
+    \centering
+    \caption{Data Collation and Source Rationale}
+    \label{tab:data_sources}
+    \begin{tblr}{
+        colspec = {|l|X[1,l]|X[1,l]|},
+        rows = {2-Z}{rowsep=4pt, font=\fontsize{10}{11}\selectfont}, 
+        row{1} = {bg=SectionBGColor, fg=white, font=\bfseries}, 
+        column{1} = {font=\bfseries},
+        hlines,
+    }
+        Data Source & Description & Methodology Rationale \\
+        AEMO (Market Data) & Half-hourly TOTAL\_DEMAND and RRP (Regional Reference Price) for the NSW1 region. & Established the target variable and allowed for the analysis of price-demand elasticity during peak events. \\
+        AEMO (Solar Data) & Estimated ROOFTOP\_SOLAR\_MW generation across NSW. & Critical for deriving GROSS\_DEMAND\_MW, accounting for "behind-the-meter" generation that masks true load. \\
+        Bureau of Meteorology & Half-hourly temperature, humidity, wind speed, and cloud cover data for Sydney. & Included to model the primary driver of demand: the non-linear relationship between ambient temperature and HVAC load. \\
+        Economic Indicators & Monthly Cash Rate (RBA), Household Spend (ABS), and Consumer Confidence indices (ANZ-Roy Morgan Australian). & Integrated to capture macro-trends and shifts in baseline energy consumption patterns over the 4-year study period. \\
+    \end{tblr}
+\end{table}
+
+\subsubsection{Data Cleaning}
+Data cleaning was limited to linear interpolation of missing weather observations and the alignment of disparate 30-minute and monthly sampling frequencies into a single dataset. Features with high multicollinearity were removed or singled out.
+
+\subsubsection{Exploratory Data Analysis (EDA)}
+Given the conciseness of this report, please refer to \appcref{app:eda} for a comprehensive EDA.
+
+\subsubsection{Feature Scaling}
+To enable the models to better generalise the dataset and remove individuality in entries, the following feature scaling processes were completed:
+
+\begin{itemize}
+  \item \textbf{Feature Engineering:} Given the time-based nature of the dataset, the hour, minute, weekend and month were extracted from the \texttt{DATE\_TIME} feature.
+  \item \textbf{Data Transformation:} One-Hot Encoding (OHE) was applied to categorical columns, standard scaling for numerical columns and binary 0/1 for boolean features. 
+\end{itemize}
+
+\subsection{Technologies Used}
+The project was executed in a Python 3.11 virtual environment, BeautifulSoup for web scraping, Pandas for data-frames, CatBoost and XGBoost libraries, sklearn, and Vegas-Altair for visualisation.
+
 \subsection{Models}
 \subsubsection{Linear Regression (Ridge)}
 The linear regressor is a parametric model that fits a linear equation over observational data between a target feature and multiple independent predictors. It served as the baseline noting its computational efficiency and simplicity in capturing non-linear demand patterns. The Ridge variant was chosen to provide a stable baseline by focusing on L2 regularisation to mitigate multicollinearity among highly correlated weather features.
@@ -410,7 +467,7 @@ The linear regressor is a parametric model that fits a linear equation over obse
 \subsubsection{Gradient Boosting Decision Trees}
 Gradient Boosted Decision Trees (GBDT) are a non-parametric ensemble learning technique that sequentially builds decision trees, where each successive learner is optimised via gradient descent to minimise the residual loss of the previous ensemble.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \caption{Model Selection and Theoretical Rationale}
     \label{tab:models}
@@ -431,7 +488,7 @@ Gradient Boosted Decision Trees (GBDT) are a non-parametric ensemble learning te
 Hyperparameter optimisation is performed via Grid Search with \(k\)-fold Cross-Validation. Through exhaustive predefined parameter grids, we identified configurations that minimised generalisation error of each model.
 
 \subsection{Metrics}
-Model performance was evaluated using a hold-out test set to ensure generalisability, with predictive accuracy quantified through Mean Absolute Percentage Error (MAPE) and Root Mean Square Error (RMSE) to penalise significant forecasting deviations during peak periods. Adjusted $R^2$ was utilised to measure the proportion of variance explained while accounting for the increased complexity of the multi-feature feature set. The following \autoref{tab:metrics_desc} below illustrates the chosen metrics.
+Model performance was evaluated using a hold-out test set to ensure generalisability. The following \autoref{tab:metrics_desc} below illustrates the chosen metrics.
 
 \begin{table}[h]
     \centering
@@ -444,7 +501,7 @@ Model performance was evaluated using a hold-out test set to ensure generalisabi
         column{1} = {font=\bfseries},
         hlines,
     }
-        Metric & Purpose & Formula \\
+        Metric & Description and Purpose & Formula \\
         MAE & Average absolute error in MW, operationally interpretable. & $\frac{1}{n}\sum|y_i - \hat{y}_i|$ \\
         MAPE & Scale-independent accuracy across demand magnitudes. & $\frac{1}{n}\sum\left|\frac{y_i - \hat{y}_i}{y_i}\right|\times 100$ \\
         RMSE & Penalises large outliers in peak demand periods. & $\sqrt{\frac{1}{n}\sum(y_i - \hat{y}_i)^2}$ \\
@@ -468,11 +525,13 @@ Model performance was evaluated using a hold-out test set to ensure generalisabi
 \sectionpageunum{References}
 \printbibliography[heading=none]
 \clearpage
+\begin{appendices}
 \sectionpageunum{Appendices}
-\subsection{Exploratory Data Analysis}
+\section{Exploratory Data Analysis}
+\label[appendix]{app:eda}
 The objective of this exploratory phase was to move beyond the raw complexity to identify the primary drivers of Gross Energy Demand. In light of the data science project cycle, this EDA served two critical functions: \textbf{Feature Selection} and \textbf{Operational Insights}.
 
-\subsubsection{General Exploration}
+\subsection{General Exploration}
 Observing multicollinearity such as through a correlation heatmap is critical because it identifies highly redundant predictors that can destabilise the model, inflate the variance of coefficient estimates, and make it impossible to determine the individual mathematical contribution of each variable to the target output.
 \begin{figure}[H]
     \centering
@@ -480,7 +539,7 @@ Observing multicollinearity such as through a correlation heatmap is critical be
     \caption{Multicollinearity Matrix on Raw Data}
 \end{figure}
 
-\subsubsection{Does temperature have a non-linear relationship with NSW grid demand across 2°C bins?}
+\subsection{Does temperature have a non-linear relationship with NSW grid demand across 2°C bins?}
 A clear U-shaped relationship was observed between temperature and mean grid demand (\autoref{fig:rq1}). Demand was lowest near 21°C and rose sharply at both cold and hot extremes, directly ruling out linear modelling.
 
 \begin{figure}[H]
@@ -491,7 +550,7 @@ A clear U-shaped relationship was observed between temperature and mean grid dem
 \end{figure}
 
 
-\subsubsection{Do mean hourly demand profiles differ between weekdays, weekends, and public holidays?}
+\subsection{Do mean hourly demand profiles differ between weekdays, weekends, and public holidays?}
 Weekday demand showed a morning commercial peak at 8 AM (~8,200 MW) and an evening residential peak at 7 PM (~9,500 MW). Weekend and holiday profiles were 1,000-1,500 MW lower with no morning peak (Figure 2). An unexpected finding was a pronounced midday dip across all day types driven by rooftop solar, forming the classic “duck curve” pattern (\autoref{fig:rq2}).
 
 \begin{figure}[H]
@@ -503,7 +562,7 @@ Weekday demand showed a morning commercial peak at 8 AM (~8,200 MW) and an eveni
 
 
 
-\subsubsection{Can an ensemble regression model predict 30-minute NSW grid demand with MAPE below 5\%?}
+\subsection{Can an ensemble regression model predict 30-minute NSW grid demand with MAPE below 5\%?}
 Three models were compared on held-out test data (Table 1). Ridge Regression failed to capture non-linear patterns (MAPE 10.31\%, R² = 0.389). XGBoost improved but showed overfitting (MAPE 5.83\%, R² = 0.836). CatBoost generalised best across all metrics, meeting the sub-5\% threshold. Regression assumptions were verified via QQ-plots (\autoref{fig:rq3}).
 \begin{figure}[H]
   \centering
@@ -512,6 +571,7 @@ Three models were compared on held-out test data (Table 1). Ridge Regression fai
   \label{fig:rq3}
 \end{figure}
 \clearpage
-\subsection{Modelling Code}
+\section{Modelling Code}
 %TC:endignore
+\end{appendices}
 \end{document}
