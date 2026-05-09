@@ -1,0 +1,1 @@
+{"rule":"COMMA_PERIOD","sentence":"^\\Q/businessbubble/.is family, /businessbubble, default/.style = color = SectionBGColor, opacity = 0.5, x = 0, y = 0, size = 4cm, textcolor = white, ., color/.estore in = , opacity/.estore in = , x/.estore in = , y/.estore in = , size/.estore in = , textcolor/.estore in = , .\\E$"}

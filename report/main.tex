@@ -30,6 +30,7 @@
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{tabularx}
+\usepackage{tabularray}
 \usepackage[thinlines]{easytable}
 \usepackage{amsmath}
 \usepackage[official]{eurosym}
@@ -251,13 +252,6 @@
 }
 
 
-
-
-
-
-
-
-
 \begin{document}
 \begin{titlepage}
 \thispagestyle{empty}
@@ -345,18 +339,15 @@ Electricity demand in NSW changes with weather, time of day, and season. During 
 
 This project used high-frequency NSW data from 2022-2026 to study demand patterns and build forecasting models. Exploratory analysis showed demand is lowest in mild conditions, rises during extreme hot or cold weather, and differs between weekdays and weekends. Rooftop solar reduces midday demand but causes a sharp evening increase. 
 
-% Ridge Regression explained only 37.5\% of demand variation, with a MAPE of 10.3\%. CatBoost performed best at R² 0.884 and MAPE 4.45\%, with XGBoost close behind at 0.860 and 5.16\%. 
-
 CatBoost is the recommended model. Its average error of around 389 MW means forecasts should inform decisions, not drive them outright, particularly during extreme weather or supply disruptions. 
 \end{adjustwidth}}
 
 \definecolor{bubble1}{HTML}{119dff}
 \definecolor{bubble2}{HTML}{5b4fff}
 
+\bubble[color=bubble1, opacity=1, x=-3.8, y=-5.6, size=8cm]{CatBoost achieved the best test performance: MAPE 4.45\%, Adjusted R² 0.884, MAE 389 MW. \\[0.3cm] XGBoost followed closely at 5.16\% and 0.860. Ridge Regression (10.3\%, 0.375) was insufficient for grid operations. \\[0.3cm] Both tree models showed no meaningful performance drop from validation to test.}
 
-\bubble[color=bubble1, opacity=1, x=-3.4, y=-5.6, size=8cm]{CatBoost achieved the best test performance: MAPE 4.45\%, Adjusted R² 0.884, MAE 389 MW. \\[0.3cm] XGBoost followed closely at 5.16\% and 0.860. Ridge Regression (10.3\%, 0.375) was insufficient for grid operations. \\[0.3cm] Both tree models showed no meaningful performance drop from validation to test.}
-
-\bubble[color=bubble2, opacity=1, x=2.8, y=-7.9, size=6.4cm]{Temperature and hour of day ranked as top predictors in both ensemble models, matching the U-shaped demand curve and intraday peaks from EDA.}
+\bubble[color=bubble2, opacity=1, x=3.8, y=-8, size=6.4cm]{Temperature and hour of day ranked as top predictors in both ensemble models, matching the U-shaped demand curve and intraday peaks from EDA.}
 
 \clearpage
 
@@ -364,6 +355,7 @@ CatBoost is the recommended model. Its average error of around 389 MW means fore
 
 \clearpage
 \listoffigures
+\listoftables
 \clearpage
 
 \pagenumbering{arabic}
@@ -397,7 +389,31 @@ To answer these questions, we sourced and merged half-hourly AEMO data with weat
 \subsubsubsection{XGBoost}
 \subsubsubsection{CatBoost}
 \subsection{Grid Search}
+Hyperparameter optimization is performed via Grid Search with \(k\)-fold Cross-Validation. Through exhaustive predefined parameter grids, we identified configurations that minimised generalization error of each model.
+
 \subsection{Metrics}
+\begin{table}[h]
+    \centering
+    \caption{Model Performance Metrics}
+    \label{tab:metrics}
+    \begin{tblr}{
+        colspec = {|l|l|l|},
+        column{1} = {font=\bfseries},
+        row{1} = {bg=SectionBGColor, fg=white, font=\bfseries}, 
+        rows = {2-Z}{rowsep=8pt}, 
+        hlines,
+    }
+        Metric & Purpose & Formula \\
+        MAE & Average absolute error in MW; operationally interpretable. & $\frac{1}{n}\sum|y_i - \hat{y}_i|$ \\
+        MAPE & Scale-independent accuracy across demand magnitudes. & $\frac{1}{n}\sum\left|\frac{y_i - \hat{y}_i}{y_i}\right|\times 100$ \\
+        RMSE & Penalises large outliers in peak demand periods. & $\sqrt{\frac{1}{n}\sum(y_i - \hat{y}_i)^2}$ \\
+        Adjusted R² & Explained variance penalised for predictor count. & $1 - \frac{(1-R^2)(n-1)}{n-p-1}$ \\
+    \end{tblr}
+\end{table}
+
+
+
+
 
 \sectionpage{Results}
 \sectionpage{Conclusion}
