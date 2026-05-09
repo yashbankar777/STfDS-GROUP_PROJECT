@@ -3,7 +3,7 @@
 
 \usepackage{fontspec}
 \usepackage{textcomp, gensymb}
-\usepackage[english]{babel}
+\usepackage[australian]{babel}
 \usepackage{alphabeta}
 \usepackage{microtype}
 \usepackage[table,xcdraw]{xcolor}
@@ -385,22 +385,44 @@ To answer these questions, we sourced and merged half-hourly AEMO data with weat
 \sectionpage{Methodology}
 \subsection{Models}
 \subsubsection{Linear Regression (Ridge)}
-\subsubsection{Gradient Boosting Trees}
-\subsubsubsection{XGBoost}
-\subsubsubsection{CatBoost}
+The linear regressor is a parametric model that fits a linear equation over observational data between a target feature and multiple independent predictors. It served as the baseline noting its computational efficiency and simplicity in capturing non-linear demand patterns. The Ridge variant was chosen to provide a stable baseline by focusing on L2 regularisation to mitigate multicollinearity among highly correlated weather features.
+
+
+\subsubsection{Gradient Boosting Decision Trees}
+Gradient Boosted Decision Trees (GBDT) are a non-parametric ensemble learning technique that sequentially builds decision trees, where each successive learner is optimised via gradient descent to minimise the residual loss of the previous ensemble.
+
+\begin{table}[h]
+    \centering
+    \caption{Model Selection and Theoretical Rationale}
+    \label{tab:models}
+    \begin{tblr}{
+        colspec = {|l|X[1,l]|X[1,l]|},
+        rows = {2-Z}{rowsep=4pt, font=\fontsize{10}{11}\selectfont}, 
+        row{1} = {bg=SectionBGColor, fg=white, font=\bfseries}, 
+        column{1} = {font=\bfseries},
+        hlines,
+    }
+        Model & Definition & Methodology Rationale \\
+        XGBoost & Scalable GBDT library designed for high computational efficiency. & Selected to address non-linear relationships in the data through sequential tree-building and dual regularisation (L1 and L2) to control model complexity. \\
+        CatBoost & Advanced GBDT algorithm that utilises symmetric trees and ordered boosting to reduce prediction shift and handle categorical features. & Chosen for its superior ability to generalise on unseen data and its efficient handling of categorical features (such as 'Season' and 'Holiday') without extensive manual encoding. \\
+    \end{tblr}
+\end{table}
+
 \subsection{Grid Search}
-Hyperparameter optimization is performed via Grid Search with \(k\)-fold Cross-Validation. Through exhaustive predefined parameter grids, we identified configurations that minimised generalization error of each model.
+Hyperparameter optimisation is performed via Grid Search with \(k\)-fold Cross-Validation. Through exhaustive predefined parameter grids, we identified configurations that minimised generalisation error of each model.
 
 \subsection{Metrics}
+Model performance was evaluated using a hold-out test set to ensure generalisability, with predictive accuracy quantified through Mean Absolute Percentage Error (MAPE) and Root Mean Square Error (RMSE) to penalise significant forecasting deviations during peak periods. Adjusted $R^2$ was utilised to measure the proportion of variance explained while accounting for the increased complexity of the multi-feature feature set. The following \autoref{tab:metrics} below illustrates the chosen metrics.
+
 \begin{table}[h]
     \centering
     \caption{Model Performance Metrics}
     \label{tab:metrics}
     \begin{tblr}{
         colspec = {|l|l|l|},
-        column{1} = {font=\bfseries},
+        rows = {2-Z}{rowsep=4pt, font=\fontsize{10}{11}\selectfont}, 
         row{1} = {bg=SectionBGColor, fg=white, font=\bfseries}, 
-        rows = {2-Z}{rowsep=8pt}, 
+        column{1} = {font=\bfseries},
         hlines,
     }
         Metric & Purpose & Formula \\

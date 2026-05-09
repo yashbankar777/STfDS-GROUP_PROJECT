@@ -1,4 +1,4 @@
-\babel@toc {english}{}\relax 
+\babel@toc {australian}{}\relax 
 \contentsline {section}{\numberline {1}Introduction}{1}{section*.1}%
 \contentsline {subsection}{\numberline {1.1}Problem Statement}{2}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Rationale}{2}{subsection.1.2}%
@@ -6,17 +6,15 @@
 \contentsline {section}{\numberline {2}Methodology}{3}{section*.2}%
 \contentsline {subsection}{\numberline {2.1}Models}{4}{subsection.2.1}%
 \contentsline {subsubsection}{\numberline {2.1.1}Linear Regression (Ridge)}{4}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Gradient Boosting Trees}{4}{subsubsection.2.1.2}%
-\contentsline {subsubsubsection}{\numberline {2.1.2.1}XGBoost}{4}{subsubsubsection.2.1.2.1}%
-\contentsline {subsubsubsection}{\numberline {2.1.2.2}CatBoost}{4}{subsubsubsection.2.1.2.2}%
+\contentsline {subsubsection}{\numberline {2.1.2}Gradient Boosting Decision Trees}{4}{subsubsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.2}Grid Search}{4}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Metrics}{4}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Results}{5}{section*.4}%
-\contentsline {section}{\numberline {4}Conclusion}{7}{section*.5}%
+\contentsline {section}{\numberline {3}Results}{5}{section*.5}%
+\contentsline {section}{\numberline {4}Conclusion}{7}{section*.6}%
 \contentsline {subsection}{\numberline {4.1}Conclusion}{8}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Discussion}{8}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Project Limitations and Caveats}{8}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Stakeholder Analysis and Project Outcomes}{8}{subsection.4.4}%
-\contentsline {section}{\numberline {5}References}{9}{section*.6}%
-\contentsline {section}{\numberline {6}Appendices}{11}{section*.7}%
+\contentsline {section}{\numberline {5}References}{9}{section*.7}%
+\contentsline {section}{\numberline {6}Appendices}{11}{section*.8}%
 \contentsfinish 

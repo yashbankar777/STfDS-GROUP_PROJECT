@@ -28,6 +28,7 @@
             "%DOCFILE%"
         ]
     }
-]
+],
+"ltex.language": "en-AU"
 
 }
